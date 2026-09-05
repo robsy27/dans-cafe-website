@@ -64,6 +64,15 @@
     <symbol id="icon-chat" viewBox="0 0 24 24">
       <path d="M20 12.6c0 3.6-3.6 6.5-8 6.5-.9 0-1.8-.1-2.6-.4L4.5 20.5l1.3-3.4C4.7 15.9 4 14.3 4 12.6 4 9 7.6 6.1 12 6.1s8 2.9 8 6.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24">
+      <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24">
+      <path d="M14.5 5 8 12l6.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
   </svg>
 
   <!-- ============ HEADER ============
@@ -259,61 +268,84 @@
         <div class="section-head center" data-reveal>
           <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-pan"/></svg></span>What's Cooking</p>
           <h2>The menu</h2>
-          <p>The full menu and daily specials are always on the board in-store — here's what's on it.</p>
+          <p>Breakfast served all day, burgers off the grill, proper mains and a kids&rsquo; menu &mdash; all made with meat from our local butchers. Daily specials are always on the board in-store.</p>
         </div>
 
         <!-- ==========================================================
              MENU BOARDS
              ----------------------------------------------------------
-             Each card looks for a real photo first. Until that photo
-             exists, the onerror swaps in the matching placeholder from
-             images/. To go live, just save your own photo into images/
-             with the exact filename in the src below — nothing else
-             needs changing.
+             Each card is a button that opens the full-size menu in the
+             lightbox at the bottom of this file.
+
+             TO UPDATE A MENU: save the new photo into images/ over the
+             existing filename (e.g. images/menu-drinks.jpg). Nothing
+             else needs changing.
+
+             TO ADD A FIFTH MENU: copy one .menu-photo-card block, give
+             it the next data-menu-open number, and the lightbox picks
+             it up automatically — it reads the cards, not a hard-coded
+             list.
              ========================================================== -->
         <div class="menu-photo-grid" data-reveal-group>
-          <figure class="menu-photo-card">
-            <div class="menu-photo-media card-frame">
-              <div class="photo-slot">
-                <div class="photo-fallback">
-                  <svg aria-hidden="true"><use href="#icon-camera"/></svg>
-                  <strong>Breakfast Menu</strong>
-                  <span>images/menu-board-breakfast.jpg</span>
-                </div>
-                <img src="images/menu-board-breakfast.jpg" alt="Dan's Cafe breakfast menu board" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder-menu-board-breakfast.svg'" />
-              </div>
-            </div>
-            <figcaption class="menu-photo-caption">Breakfast</figcaption>
-          </figure>
-          <figure class="menu-photo-card">
-            <div class="menu-photo-media card-frame">
-              <div class="photo-slot">
-                <div class="photo-fallback">
-                  <svg aria-hidden="true"><use href="#icon-camera"/></svg>
-                  <strong>Diner Menu</strong>
-                  <span>images/menu-board-diner.jpg</span>
-                </div>
-                <img src="images/menu-board-diner.jpg" alt="Dan's Cafe diner and burgers menu board" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder-menu-board-diner.svg'" />
-              </div>
-            </div>
-            <figcaption class="menu-photo-caption">Diner &amp; Burgers</figcaption>
-          </figure>
-          <figure class="menu-photo-card">
-            <div class="menu-photo-media card-frame">
-              <div class="photo-slot">
-                <div class="photo-fallback">
-                  <svg aria-hidden="true"><use href="#icon-camera"/></svg>
-                  <strong>Drinks Menu</strong>
-                  <span>images/menu-board-drinks.jpg</span>
-                </div>
-                <img src="images/menu-board-drinks.jpg" alt="Dan's Cafe drinks and shakes menu board" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder-menu-board-drinks.svg'" />
-              </div>
-            </div>
-            <figcaption class="menu-photo-caption">Shakes &amp; Drinks</figcaption>
-          </figure>
+          <div class="menu-photo-card">
+            <button type="button" class="menu-photo-btn" data-menu-open="0">
+              <span class="menu-photo-media card-frame">
+                <span class="photo-slot">
+                  <img src="images/menu-breakfast-burgers.jpg" alt="Dan&rsquo;s Cafe all day breakfast and burgers menu &mdash; The Big One, breakfast baps, breakfast burrito, and the full smash burger range" loading="lazy" width="1206" height="1703" />
+                </span>
+                <span class="menu-zoom-hint" aria-hidden="true">
+                  <svg><use href="#icon-expand"/></svg>Enlarge
+                </span>
+              </span>
+              <span class="menu-photo-caption">All Day Breakfast &amp; Burgers</span>
+              <span class="visually-hidden">&mdash; select to view full size</span>
+            </button>
+          </div>
+          <div class="menu-photo-card">
+            <button type="button" class="menu-photo-btn" data-menu-open="1">
+              <span class="menu-photo-media card-frame">
+                <span class="photo-slot">
+                  <img src="images/menu-mains-sandwiches.jpg" alt="Dan&rsquo;s Cafe main meals menu &mdash; jackets, hunters chicken, scampi, toasties, ciabattas, sandwiches and sides" loading="lazy" width="1206" height="1706" />
+                </span>
+                <span class="menu-zoom-hint" aria-hidden="true">
+                  <svg><use href="#icon-expand"/></svg>Enlarge
+                </span>
+              </span>
+              <span class="menu-photo-caption">Mains, Toasties &amp; Sandwiches</span>
+              <span class="visually-hidden">&mdash; select to view full size</span>
+            </button>
+          </div>
+          <div class="menu-photo-card">
+            <button type="button" class="menu-photo-btn" data-menu-open="2">
+              <span class="menu-photo-media card-frame">
+                <span class="photo-slot">
+                  <img src="images/menu-drinks.jpg" alt="Dan&rsquo;s Cafe drinks menu &mdash; coffee, tea, hot chocolate, matcha, smoothies, soft drinks and milkshakes" loading="lazy" width="1206" height="1716" />
+                </span>
+                <span class="menu-zoom-hint" aria-hidden="true">
+                  <svg><use href="#icon-expand"/></svg>Enlarge
+                </span>
+              </span>
+              <span class="menu-photo-caption">Drinks &amp; Milkshakes</span>
+              <span class="visually-hidden">&mdash; select to view full size</span>
+            </button>
+          </div>
+          <div class="menu-photo-card">
+            <button type="button" class="menu-photo-btn" data-menu-open="3">
+              <span class="menu-photo-media card-frame">
+                <span class="photo-slot">
+                  <img src="images/menu-kids.jpg" alt="Dan&rsquo;s Cafe kids menu &mdash; children&rsquo;s breakfasts, main meals and drinks" loading="lazy" width="1206" height="1712" />
+                </span>
+                <span class="menu-zoom-hint" aria-hidden="true">
+                  <svg><use href="#icon-expand"/></svg>Enlarge
+                </span>
+              </span>
+              <span class="menu-photo-caption">Kids&rsquo; Menu</span>
+              <span class="visually-hidden">&mdash; select to view full size</span>
+            </button>
+          </div>
         </div>
 
-        <p class="menu-note">* Placeholder boards — drop your own menu photos into <code>images/</code> using the filenames above and they'll appear here automatically. Update the images any time your menu changes, no code edits needed.</p>
+        <p class="menu-note">Select any menu to read it full size. <strong>GFA</strong> = gluten free available. Please note that all 14 allergens are used in our kitchen &mdash; do let a member of staff know if you have any dietary requirements.</p>
       </div>
     </section>
 
@@ -534,20 +566,20 @@
             <span class="stars" aria-hidden="true">
               <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
             </span>
-            <blockquote>&ldquo;Food is fantastic. I had eggs Benedict this morning and it was one of the best I've ever had.&rdquo;</blockquote>
+            <blockquote>&ldquo;Excellent good quality food and excellent good friendly staff, excellent good fast service&hellip; the breakfast, the big one, is extremely good &mdash; you must go and try it.&rdquo;</blockquote>
             <figcaption>
-              <strong>Julie B</strong>
-              <span>Whitchurch · Tripadvisor, May 2025</span>
+              <strong>Paul W</strong>
+              <span>Tripadvisor, Oct 2025</span>
             </figcaption>
           </figure>
           <figure class="testimonial-card card-glass">
             <span class="stars" aria-hidden="true">
               <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
             </span>
-            <blockquote>&ldquo;Everything about our plates was spot on. The eggs poached to perfection, the tenderness and flavours in the ham, and the perfectly toasted muffin.&rdquo;</blockquote>
+            <blockquote>&ldquo;We came here for lunch for the first time. The staff were so pleasant, the food was great&hellip; the chips were the best I've had in a long time. All reasonably priced.&rdquo;</blockquote>
             <figcaption>
-              <strong>Amber R</strong>
-              <span>Tripadvisor, May 2025</span>
+              <strong>ABC622014</strong>
+              <span>Shrewsbury &middot; Tripadvisor, Mar 2025</span>
             </figcaption>
           </figure>
           <figure class="testimonial-card card-glass">
@@ -799,6 +831,46 @@
   <button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
+
+  <!-- ============ MENU LIGHTBOX ============
+       The viewer that opens when a menu card is selected. js/main.js
+       populates it from the .menu-photo-btn cards in the menu section,
+       so adding or renaming a menu up there needs no changes down here.
+       Starts hidden, and is only inserted into the tab order once open. -->
+  <div class="menu-lightbox" id="menuLightbox" role="dialog" aria-modal="true" aria-labelledby="menuLightboxTitle" hidden>
+    <div class="menu-lightbox-backdrop" data-menu-close></div>
+
+    <div class="menu-lightbox-inner">
+      <div class="menu-lightbox-bar">
+        <p class="menu-lightbox-title" id="menuLightboxTitle">Menu</p>
+        <div class="menu-lightbox-tools">
+          <button type="button" class="menu-lightbox-tool" id="menuLightboxZoom" aria-pressed="false">
+            <svg aria-hidden="true"><use href="#icon-expand"/></svg>
+            <span class="menu-lightbox-tool-label">Zoom in</span>
+          </button>
+          <button type="button" class="menu-lightbox-tool is-close" data-menu-close aria-label="Close menu viewer">
+            <svg aria-hidden="true"><use href="#icon-close"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="menu-lightbox-stage" id="menuLightboxStage">
+        <img id="menuLightboxImg" src="" alt="" />
+      </div>
+
+      <div class="menu-lightbox-foot">
+        <button type="button" class="menu-lightbox-arrow" data-menu-step="-1" aria-label="Previous menu">
+          <svg aria-hidden="true"><use href="#icon-chevron"/></svg>
+        </button>
+        <p class="menu-lightbox-count" aria-live="polite">
+          <span id="menuLightboxIndex">1</span> of <span id="menuLightboxTotal">4</span>
+        </p>
+        <button type="button" class="menu-lightbox-arrow is-next" data-menu-step="1" aria-label="Next menu">
+          <svg aria-hidden="true"><use href="#icon-chevron"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

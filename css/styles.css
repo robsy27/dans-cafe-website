@@ -1060,42 +1060,145 @@ a:hover > .photo-slot img {
 }
 
 /* =========================================================
-   Menu — real photo boards, swapped in as Dan updates them
+   Menu — Dan's four printed menus. Each tile is a button that
+   opens the full-size scan in the lightbox (see bottom of file).
    ========================================================= */
 .menu-photo-grid {
   display: grid;
   gap: var(--space-3);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: 1fr;
 }
 
-.menu-photo-card {
+/* Two up as soon as there's room, then all four across on desktop so
+   the set reads as one menu rather than two rows of unrelated cards. */
+@media (min-width: 480px) {
+  .menu-photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .menu-photo-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.menu-photo-card { display: flex; }
+
+/* The whole tile is the button, so the tap target is the entire card
+   rather than a small link tucked underneath it. */
+.menu-photo-btn {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* The 3:4 box is the photo frame. The caption sits below it, outside the
-   clipped area. */
+.menu-photo-btn:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 4px;
+}
+
+/* The box matches A4, so the scan is never cropped. */
 .menu-photo-media {
-  aspect-ratio: 3 / 4;
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1.414;
   overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
 .menu-photo-media .photo-slot {
+  display: block;
   border-radius: inherit;
+  background: var(--color-surface);
+}
+
+.menu-photo-media .photo-slot img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.menu-photo-btn:hover .photo-slot img,
+.menu-photo-btn:focus-visible .photo-slot img {
+  transform: scale(1.03);
+}
+
+/* Softens the bottom of the scan so the Enlarge pill stays legible
+   over whatever happens to be printed there. */
+.menu-photo-media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(38, 35, 29, 0.55), transparent);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+
+.menu-zoom-hint {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-2);
+  z-index: 1;
+  transform: translate(-50%, 10px);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--radius-pill);
+  background: rgba(38, 35, 29, 0.86);
+  color: var(--color-cream);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+
+.menu-zoom-hint svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.menu-photo-btn:hover .menu-zoom-hint,
+.menu-photo-btn:focus-visible .menu-zoom-hint {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.menu-photo-btn:hover .menu-photo-media::after,
+.menu-photo-btn:focus-visible .menu-photo-media::after { opacity: 1; }
+
+/* Touch devices have no hover state to reveal the affordance, so it
+   stays visible there — otherwise nothing says the tile is tappable. */
+@media (hover: none) and (pointer: coarse) {
+  .menu-zoom-hint { opacity: 1; transform: translate(-50%, 0); }
+  .menu-photo-media::after { opacity: 1; }
 }
 
 .menu-photo-caption {
+  display: block;
   margin-top: var(--space-2);
   text-align: center;
   font-weight: 700;
   font-size: var(--fs-sm);
-  color: rgba(246, 241, 231, 0.9);
+  color: rgba(246, 241, 231, 0.92);
 }
 
 .menu-note {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
   font-size: var(--fs-sm);
   text-align: center;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* =========================================================
@@ -2085,4 +2188,196 @@ a:hover > .photo-slot img {
    type sizes change. Textareas are excluded — they set their own height. */
 .field input {
   height: calc(1.6em + 1.4rem + 3px);
+}
+
+/* =========================================================
+   Menu lightbox — full-size menu viewer
+   ---------------------------------------------------------
+   Sits at the end of <body>, deliberately outside every
+   backdrop-filter ancestor: a filtered ancestor becomes the
+   containing block for position:fixed and would trap this
+   overlay inside it instead of covering the viewport (the
+   same trap the mobile nav had).
+   ========================================================= */
+.menu-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+}
+
+/* Beats the display:flex above — without this, [hidden] loses. */
+.menu-lightbox[hidden] { display: none; }
+
+.menu-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 22, 18, 0.9);
+  animation: lightbox-fade var(--dur-base) var(--ease-out);
+}
+
+@supports (backdrop-filter: blur(4px)) {
+  .menu-lightbox-backdrop { backdrop-filter: blur(6px); }
+}
+
+.menu-lightbox-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 62rem;
+  height: 100%;
+  animation: lightbox-rise var(--dur-base) var(--ease-out);
+}
+
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lightbox-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-lightbox-backdrop,
+  .menu-lightbox-inner { animation: none; }
+}
+
+/* ---- Top bar: title + zoom + close ---- */
+.menu-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.menu-lightbox-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--color-cream);
+  min-width: 0;
+}
+
+.menu-lightbox-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.menu-lightbox-tool,
+.menu-lightbox-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(246, 241, 231, 0.28);
+  border-radius: var(--radius-pill);
+  background: rgba(246, 241, 231, 0.08);
+  color: var(--color-cream);
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+
+.menu-lightbox-tool:hover,
+.menu-lightbox-arrow:hover:not(:disabled) {
+  background: rgba(246, 241, 231, 0.18);
+  border-color: rgba(246, 241, 231, 0.5);
+}
+
+.menu-lightbox-tool:focus-visible,
+.menu-lightbox-arrow:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+.menu-lightbox-tool svg,
+.menu-lightbox-arrow svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.menu-lightbox-tool.is-close { padding: 0; }
+
+/* The zoom control keeps its icon on narrow screens but drops the
+   label, which is what runs the bar out of room first. */
+@media (max-width: 559px) {
+  .menu-lightbox-tool-label { display: none; }
+  .menu-lightbox-tool { padding: 0; }
+}
+
+/* ---- Stage ---- */
+.menu-lightbox-stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-lightbox-stage img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  cursor: zoom-in;
+}
+
+/* Zoomed: the stage goes back to block flow. Centring an oversized
+   child with flex would clip its top and left beyond the scroll
+   origin — block + margin auto scrolls to the real edges. */
+.menu-lightbox-stage.is-zoomed { display: block; }
+
+.menu-lightbox-stage.is-zoomed img {
+  max-width: none;
+  max-height: none;
+  width: 1206px;          /* the scans' native width — full sharpness */
+  min-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  cursor: zoom-out;
+}
+
+/* ---- Foot: prev / count / next ---- */
+.menu-lightbox-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.menu-lightbox-arrow.is-next svg { transform: rotate(180deg); }
+
+.menu-lightbox-count {
+  margin: 0;
+  min-width: 5.5rem;
+  text-align: center;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(246, 241, 231, 0.82);
 }

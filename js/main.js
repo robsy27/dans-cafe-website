@@ -361,4 +361,164 @@
         });
     });
   }
+
+  /* ---------- Menu lightbox ----------
+     Opens the full-size scan of any menu. The menu list is read from
+     the cards in the markup rather than hard-coded here, so adding or
+     reordering a menu in index.html needs no change in this file. */
+  var lightbox = document.getElementById("menuLightbox");
+  var menuButtons = Array.prototype.slice.call(document.querySelectorAll(".menu-photo-btn"));
+
+  if (lightbox && menuButtons.length) {
+    var lbImg = document.getElementById("menuLightboxImg");
+    var lbStage = document.getElementById("menuLightboxStage");
+    var lbTitle = document.getElementById("menuLightboxTitle");
+    var lbIndex = document.getElementById("menuLightboxIndex");
+    var lbTotal = document.getElementById("menuLightboxTotal");
+    var lbZoom = document.getElementById("menuLightboxZoom");
+    var lbZoomLabel = lbZoom ? lbZoom.querySelector(".menu-lightbox-tool-label") : null;
+
+    var menus = menuButtons.map(function (btn) {
+      var img = btn.querySelector("img");
+      var caption = btn.querySelector(".menu-photo-caption");
+      return {
+        src: img ? img.getAttribute("src") : "",
+        alt: img ? img.getAttribute("alt") : "",
+        title: caption ? caption.textContent.trim() : "Menu"
+      };
+    });
+
+    var current = 0;
+    var lastFocused = null;
+    lbTotal.textContent = String(menus.length);
+
+    function setZoom(on) {
+      lbStage.classList.toggle("is-zoomed", on);
+      if (lbZoom) {
+        lbZoom.setAttribute("aria-pressed", String(on));
+        if (lbZoomLabel) lbZoomLabel.textContent = on ? "Zoom out" : "Zoom in";
+      }
+      if (!on) {
+        lbStage.scrollTop = 0;
+        lbStage.scrollLeft = 0;
+      }
+    }
+
+    function show(i) {
+      current = (i + menus.length) % menus.length;
+      var m = menus[current];
+      lbImg.setAttribute("src", m.src);
+      lbImg.setAttribute("alt", m.alt);
+      lbTitle.textContent = m.title;
+      lbIndex.textContent = String(current + 1);
+      setZoom(false);
+
+      /* Warm the neighbouring scans so paging through feels instant. */
+      [current + 1, current - 1].forEach(function (n) {
+        var next = menus[(n + menus.length) % menus.length];
+        if (next && next.src) {
+          var pre = new Image();
+          pre.src = next.src;
+        }
+      });
+    }
+
+    /* Screen readers can otherwise still wander into the page behind an
+       open dialog, since aria-modal alone isn't enough in every AT. */
+    var behind = Array.prototype.slice.call(
+      document.querySelectorAll("body > header, body > main, body > footer")
+    );
+
+    function setBehindHidden(hide) {
+      behind.forEach(function (el) {
+        if (hide) el.setAttribute("aria-hidden", "true");
+        else el.removeAttribute("aria-hidden");
+      });
+    }
+
+    function openLightbox(i) {
+      /* Deliberately the tile itself rather than document.activeElement:
+         Safari doesn't focus a button when you click it, so activeElement
+         would be <body> and focus would be lost on close. */
+      lastFocused = menuButtons[i] || document.activeElement;
+      show(i);
+      lightbox.hidden = false;
+      setBehindHidden(true);
+      document.body.style.overflow = "hidden";
+      var closeBtn = lightbox.querySelector("[data-menu-close].menu-lightbox-tool");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      setBehindHidden(false);
+      document.body.style.overflow = "";
+      setZoom(false);
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+      lastFocused = null;
+    }
+
+    menuButtons.forEach(function (btn, i) {
+      btn.addEventListener("click", function () {
+        openLightbox(i);
+      });
+    });
+
+    lightbox.addEventListener("click", function (e) {
+      var closer = e.target.closest ? e.target.closest("[data-menu-close]") : null;
+      if (closer) {
+        closeLightbox();
+        return;
+      }
+      var stepBtn = e.target.closest ? e.target.closest("[data-menu-step]") : null;
+      if (stepBtn) show(current + Number(stepBtn.getAttribute("data-menu-step")));
+    });
+
+    if (lbZoom) {
+      lbZoom.addEventListener("click", function () {
+        setZoom(!lbStage.classList.contains("is-zoomed"));
+      });
+    }
+
+    lbImg.addEventListener("click", function () {
+      setZoom(!lbStage.classList.contains("is-zoomed"));
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hidden) return;
+
+      if (e.key === "Escape") {
+        closeLightbox();
+        return;
+      }
+      if (e.key === "ArrowRight") {
+        show(current + 1);
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        show(current - 1);
+        return;
+      }
+
+      /* Keep Tab inside the dialog while it's open. */
+      if (e.key === "Tab") {
+        var focusables = Array.prototype.slice
+          .call(lightbox.querySelectorAll("button, [href], img[tabindex], [tabindex]:not([tabindex='-1'])"))
+          .filter(function (el) {
+            return el.offsetParent !== null || el === document.activeElement;
+          });
+        if (!focusables.length) return;
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+
 })();
