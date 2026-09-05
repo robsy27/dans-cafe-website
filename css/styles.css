@@ -698,8 +698,9 @@ p {
 }
 
 /* The header shrinks once scrolled; the open mobile menu has to follow it
-   down, or a strip of page shows through the gap. */
-.site-header.is-scrolled .nav-mobile {
+   down, or a strip of page shows through the gap. The menu is a SIBLING of
+   the header (see index.html) so this is an adjacent-sibling selector. */
+.site-header.is-scrolled + .nav-mobile {
   top: 68px;
 }
 
@@ -2005,4 +2006,29 @@ a:hover > .photo-slot img {
     display: inline-block;
     padding-block: 0.4rem;
   }
+}
+
+
+/* =========================================================
+   Grid overflow guards
+   Grid and flex items default to min-width:auto, so a single
+   unbreakable string (an email address, a URL) can force its
+   track wider than the container. These sections hold contact
+   details, so they need both the shrink permission and a
+   wrapping rule for the long tokens themselves.
+   ========================================================= */
+.contact .container > *,
+.visit-layout > *,
+.about .container > *,
+.field-row > * {
+  min-width: 0;
+}
+
+/* Let long addresses and URLs break instead of overflowing. */
+.info-row a,
+.info-row span,
+.form-note,
+.footer-col a,
+.footer-col p {
+  overflow-wrap: anywhere;
 }

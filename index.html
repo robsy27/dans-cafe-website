@@ -99,8 +99,13 @@
         <svg class="icon-close" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
+  </header>
 
-    <nav class="nav-mobile" id="navMobile" aria-label="Mobile">
+  <!-- Mobile menu lives OUTSIDE <header> on purpose: the header uses
+       backdrop-filter, which makes it a containing block for any
+       position:fixed descendant. Nested inside, this panel was being
+       trapped in the 84px header box instead of filling the screen. -->
+  <nav class="nav-mobile" id="navMobile" aria-label="Mobile">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#menu">Menu</a></li>
@@ -112,7 +117,6 @@
       </ul>
       <a class="btn btn-primary header-cta" href="#order">Order for Collection</a>
     </nav>
-  </header>
 
   <main id="main">
     <div id="top"></div>
