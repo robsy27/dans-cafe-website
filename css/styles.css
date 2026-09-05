@@ -1,0 +1,2008 @@
+/* =========================================================
+   Dan's Cafe — Design Tokens
+   Point of view: modern indie diner-meets-brunch-spot in
+   Whitchurch. Badge-branded, editorial photography-led.
+   ========================================================= */
+:root {
+  /* Color — restrained 5-color system pulled from the real
+     Dan's Cafe badge (sage/cream) and food/interior photography
+     (charcoal shadows, warm amber bulb + sauce tones). */
+  --color-cream: #f6f1e7;
+  --color-cream-deep: #eee5d2;
+  --color-surface: #ffffff;
+  --color-charcoal: #26231d;
+  --color-charcoal-soft: #55503f;
+  --color-sage: #7c8a73;
+  --color-sage-dark: #5c6850;
+  --color-sage-tint: #e7ebe0;
+  --color-amber: #c9821e;
+  /* Darker amber for TEXT — plain --color-amber is only ~3:1 on cream,
+     which fails WCAG AA for body-size text. Use this whenever the amber
+     is words rather than decoration. */
+  --color-amber-deep: #8f5b0f;
+  --color-amber-tint: #f6e4c8;
+  --color-border: #e2d8c2;
+  --color-danger: #a8402f;
+  --color-success: #4b6a45;
+  --color-focus-ring: #1f6b8c;
+
+  --color-on-charcoal: #f6f1e7;
+  --color-on-sage: #f6f1e7;
+
+  /* Typography — Fraunces (character, warm, premium serif)
+     paired with Plus Jakarta Sans (distinctive geometric sans,
+     deliberately not Inter/Roboto). */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --fs-xs: 0.875rem;
+  --fs-sm: 1rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.1875rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 1.95rem;
+  --fs-2xl: 2.5rem;
+  --fs-3xl: 3.4rem;
+  --fs-4xl: 4.4rem;
+
+  /* Spacing (8pt rhythm) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 3.5rem;
+  --space-7: 3.75rem;
+  --space-8: 6rem;
+
+  /* Layout */
+  --container-max: 75rem;
+  --container-pad: 1.25rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --dur-fast: 200ms;
+  --dur-base: 380ms;
+  --dur-slow: 700ms;
+
+  --shadow-sm: 0 2px 10px rgba(38, 35, 29, 0.08);
+  --shadow-md: 0 16px 40px rgba(38, 35, 29, 0.14);
+  --shadow-lg: 0 30px 70px rgba(38, 35, 29, 0.22);
+
+  --header-h: 84px;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  /* Panels sitting on the dark sage sections need to be more opaque,
+     or the charcoal text inside them drops below 4.5:1. */
+  --glass-bg-soft: rgba(255, 255, 255, 0.74);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-blur: blur(18px) saturate(160%);
+  --glass-glow: rgba(201, 130, 30, 0.4);
+}
+
+/* =========================================================
+   Reset
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Anything the nav jumps to must clear the fixed header, or its heading
+   ends up hidden underneath. */
+[id] {
+  scroll-margin-top: calc(var(--header-h) + var(--space-2));
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--color-charcoal);
+  background: var(--color-cream);
+  min-height: 100dvh;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -60px;
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  z-index: 1000;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* =========================================================
+   Layout helpers
+   ========================================================= */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--space-7);
+  border-top: 1px solid var(--color-border);
+}
+
+.section-sage {
+  position: relative;
+  /* --color-sage is the badge green. Cream on it is only ~3.2:1, so the
+     large flat fills use --color-sage-dark (5.2:1) instead. */
+  background: var(--color-sage-dark);
+  color: var(--color-on-sage);
+  border-top-color: rgba(246, 241, 231, 0.2);
+  isolation: isolate;
+}
+
+/* Fine paper-grain texture — subtle warmth, ~3.5% opacity */
+.section-sage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.section-sage > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section-sage .eyebrow { color: var(--color-cream); }
+.section-sage .eyebrow::before { background: var(--color-amber); }
+.section-sage h2 { color: var(--color-on-sage); }
+.section-sage p { color: rgba(246, 241, 231, 0.92); }
+/* Higher specificity than .section-head h2/p and .menu-note so sage
+   sections always keep legible light text regardless of source order. */
+.section-sage .section-head h2 { color: var(--color-on-sage); }
+.section-sage .section-head p { color: rgba(246, 241, 231, 0.92); }
+.section-sage .menu-note { color: rgba(246, 241, 231, 0.9); }
+
+.section-head {
+  max-width: 40rem;
+  margin-bottom: var(--space-4);
+}
+
+.section-head.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-sage-dark);
+  margin-bottom: var(--space-2);
+}
+
+/* Icon badge replaces the old plain dash */
+.eyebrow .eyebrow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-amber-tint);
+  color: var(--color-amber);
+  border: 1px solid rgba(201, 130, 30, 0.35);
+}
+
+.eyebrow .eyebrow-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.section-sage .eyebrow .eyebrow-icon {
+  background: rgba(246, 241, 231, 0.16);
+  border-color: rgba(246, 241, 231, 0.4);
+  color: var(--color-cream);
+}
+
+.section-head.center .eyebrow {
+  justify-content: center;
+}
+
+.section-head h2 {
+  font-size: var(--fs-2xl);
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-2);
+}
+
+.section-head p {
+  color: var(--color-charcoal-soft);
+  font-size: var(--fs-md);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Glass cards — every content block sits in a frosted card
+   with a border that lights up softly on hover/focus.
+   ========================================================= */
+.card-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.card-glass:hover,
+.card-glass:focus-within {
+  border-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.14), var(--shadow-md);
+}
+
+/* Sage sections need a slightly softer glass tint so text stays legible */
+.section-sage .card-glass {
+  background: var(--glass-bg-soft);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.section-sage .card-glass:hover,
+.section-sage .card-glass:focus-within {
+  border-color: rgba(246, 241, 231, 0.75);
+  box-shadow: 0 0 0 4px rgba(246, 241, 231, 0.16), var(--shadow-md);
+}
+
+/* Media cards (photos): border + glow frame only, no frosted fill,
+   since the photo itself covers the card. */
+.card-frame {
+  border-radius: var(--radius-lg);
+  outline: 1px solid var(--glass-border);
+  outline-offset: -1px;
+  transition: outline-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.card-frame:hover,
+.card-frame:focus-visible {
+  outline-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.18);
+}
+
+/* =========================================================
+   Marquee strip
+   ========================================================= */
+.marquee {
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  overflow: hidden;
+  padding-block: 0.85rem;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-md);
+  padding-inline: var(--space-3);
+  white-space: nowrap;
+}
+
+.marquee-track span::after {
+  content: "\2022";
+  margin-left: var(--space-3);
+  color: var(--color-amber);
+  font-style: normal;
+}
+
+/* Hovering the strip stops it, so the words can be read at rest. */
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 50px;
+  padding: 0.9rem 1.7rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.01em;
+  transition: transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-charcoal);
+  color: var(--color-on-charcoal);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-charcoal);
+  border: 1.5px solid var(--color-border);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-on-sage {
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+.btn-on-sage:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Magnetic hover glow (JS adds --mx/--my via pointer position) */
+.btn-magnetic {
+  overflow: hidden;
+}
+
+.btn-magnetic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.btn-magnetic:hover::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   Header / Nav
+   ========================================================= */
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: rgba(246, 241, 231, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    height var(--dur-base) var(--ease-out);
+}
+
+.site-header.is-scrolled {
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+  height: 68px;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-md);
+  color: var(--color-charcoal);
+}
+
+.brand .brand-mark {
+  width: 42px;
+  height: 42px;
+  color: var(--color-sage-dark);
+  flex-shrink: 0;
+}
+
+.brand-sub {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-charcoal-soft);
+}
+
+.nav-desktop {
+  display: none;
+}
+
+.nav-desktop ul {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.nav-desktop a {
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--color-charcoal);
+  position: relative;
+  padding-block: 0.4rem;
+}
+
+.nav-desktop a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-amber);
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.nav-desktop a:hover::after,
+.nav-desktop a.is-active::after {
+  width: 100%;
+}
+
+.header-cta {
+  display: none;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+}
+
+.nav-toggle svg {
+  width: 26px;
+  height: 26px;
+}
+
+.icon-close {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .icon-menu {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+.nav-mobile {
+  position: fixed;
+  top: var(--header-h);
+  inset-inline: 0;
+  bottom: 0;
+  background: var(--color-cream);
+  z-index: 99;
+  padding: var(--space-4) var(--container-pad);
+  transform: translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out), visibility var(--dur-base);
+  overflow-y: auto;
+}
+
+.nav-mobile.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.nav-mobile ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nav-mobile a {
+  display: block;
+  padding: var(--space-2) var(--space-1);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-mobile .header-cta {
+  display: flex;
+  margin-top: var(--space-4);
+}
+
+/* The full row is brand + seven links + the Order button. Below 1024px
+   that does not fit, so tablets keep the mobile menu. */
+@media (min-width: 1024px) {
+  .nav-desktop {
+    display: block;
+  }
+  .header-cta {
+    display: inline-flex;
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .nav-mobile {
+    display: none;
+  }
+}
+
+/* Tighter link spacing in the band where the row only just fits. */
+@media (min-width: 1024px) and (max-width: 1180px) {
+  .nav-desktop ul {
+    gap: var(--space-3);
+  }
+  .site-header .container {
+    gap: var(--space-2);
+  }
+}
+
+/* The header shrinks once scrolled; the open mobile menu has to follow it
+   down, or a strip of page shows through the gap. */
+.site-header.is-scrolled .nav-mobile {
+  top: 68px;
+}
+
+/* =========================================================
+   Hero — editorial photo-led
+   ========================================================= */
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + var(--space-4));
+  padding-bottom: var(--space-5);
+  overflow: hidden;
+  background: var(--color-cream);
+}
+
+.hero .container {
+  display: grid;
+  gap: var(--space-4);
+  align-items: end;
+}
+
+.hero-copy .eyebrow {
+  margin-bottom: var(--space-2);
+}
+
+.hero-copy h1 {
+  font-size: 2.75rem;
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-3);
+}
+
+@media (min-width: 480px) {
+  .hero-copy h1 {
+    font-size: var(--fs-3xl);
+  }
+}
+
+.hero-copy h1 em {
+  font-style: italic;
+  color: var(--color-sage-dark);
+}
+
+.hero-copy p {
+  font-size: var(--fs-md);
+  color: var(--color-charcoal-soft);
+  max-width: 32rem;
+  margin-bottom: var(--space-4);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Brand banner above the hero photo — matches the badge/logo styling */
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-sage-dark);
+  color: var(--color-cream);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-2);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(246, 241, 231, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
+}
+
+/* Thin inner keyline, mirroring the badge's double-ring detail */
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(246, 241, 231, 0.28);
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+
+.hero-banner-mark {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--color-cream);
+}
+
+.hero-banner-text {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-banner-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.hero-banner-text span {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.95;
+  margin-top: 0.25rem;
+}
+
+.hero-banner-rule {
+  display: none;
+  flex: 1;
+  height: 1px;
+  background: rgba(246, 241, 231, 0.35);
+}
+
+@media (min-width: 560px) {
+  .hero-banner-rule {
+    display: block;
+  }
+}
+
+.hero-media {
+  position: relative;
+}
+
+.hero-photo {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  outline: 1px solid var(--glass-border);
+  outline-offset: -1px;
+  transition: outline-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.hero-photo:hover {
+  outline-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.18), var(--shadow-lg);
+}
+
+.hero-badge {
+  position: absolute;
+  bottom: -14px;
+  left: -8px;
+  width: 92px;
+  height: 92px;
+  filter: drop-shadow(var(--shadow-md));
+  animation: spin-badge 22s linear infinite;
+}
+
+@media (min-width: 600px) {
+  .hero-badge {
+    bottom: -28px;
+    left: -28px;
+    width: 128px;
+    height: 128px;
+  }
+}
+
+@keyframes spin-badge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge { animation: none; }
+}
+
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.hero-trust li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-charcoal);
+}
+
+.hero-trust svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-sage-dark);
+  flex-shrink: 0;
+}
+
+@media (min-width: 960px) {
+  .hero .container {
+    grid-template-columns: 1fr 0.92fr;
+  }
+  .hero-copy h1 {
+    font-size: var(--fs-4xl);
+  }
+  .hero-media {
+    order: 2;
+  }
+}
+
+/* =========================================================
+   Photo slot — real-photo component with graceful fallback
+   ========================================================= */
+.photo-slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(155deg, var(--color-sage-tint) 0%, var(--color-cream-deep) 100%);
+}
+
+.photo-slot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-soft);
+}
+
+a:hover > .photo-slot img {
+  transform: scale(1.06);
+}
+
+.photo-slot .photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-align: center;
+  padding: var(--space-3);
+  color: var(--color-sage-dark);
+}
+
+.photo-fallback svg {
+  width: 34px;
+  height: 34px;
+  opacity: 0.6;
+}
+
+.photo-fallback strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  color: var(--color-charcoal);
+}
+
+.photo-fallback span {
+  font-size: var(--fs-xs);
+  color: var(--color-charcoal-soft);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+}
+
+/* =========================================================
+   About
+   ========================================================= */
+.about .container {
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.about-media {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  outline: 1px solid var(--glass-border);
+  outline-offset: -1px;
+  transition: outline-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.about-media:hover {
+  outline-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.18), var(--shadow-md);
+}
+
+.about-copy h2 {
+  font-size: var(--fs-2xl);
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-2);
+}
+
+.about-copy p {
+  color: var(--color-charcoal-soft);
+  font-size: var(--fs-md);
+  margin-bottom: var(--space-3);
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.about-stats div {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  text-align: center;
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.about-stats div:hover {
+  border-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.14);
+}
+
+.about-stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  color: var(--color-sage-dark);
+}
+
+.about-stats span {
+  font-size: var(--fs-xs);
+  color: var(--color-charcoal-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (min-width: 900px) {
+  .about .container {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+}
+
+/* =========================================================
+   Menu — real photo boards, swapped in as Dan updates them
+   ========================================================= */
+.menu-photo-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.menu-photo-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The 3:4 box is the photo frame. The caption sits below it, outside the
+   clipped area. */
+.menu-photo-media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.menu-photo-media .photo-slot {
+  border-radius: inherit;
+}
+
+.menu-photo-caption {
+  margin-top: var(--space-2);
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: rgba(246, 241, 231, 0.9);
+}
+
+.menu-note {
+  margin-top: var(--space-3);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+/* =========================================================
+   Socials — uniform 3 x 3 grid of nine square photo tiles
+   ========================================================= */
+/* Section head with the two social logos sitting to its right */
+.socials-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.socials-head .section-head {
+  margin-bottom: 0;
+}
+
+.socials-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.social-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.social-logo:hover {
+  border-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.14), var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.social-logo svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--color-sage-dark);
+}
+
+.social-logo strong {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.social-logo em {
+  display: block;
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--color-charcoal-soft);
+}
+
+@media (min-width: 900px) {
+  .socials-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .socials-links {
+    flex-shrink: 0;
+  }
+}
+
+/* Always 3 across, so the nine tiles form a clean 3 x 3 at every size */
+.insta-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (min-width: 700px) {
+  .insta-grid {
+    gap: var(--space-2);
+  }
+}
+
+
+
+/* Every tile is the same perfect square */
+.insta-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  outline: 1px solid var(--glass-border);
+  outline-offset: -1px;
+  transition: outline-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.insta-tile:hover,
+.insta-tile:focus-visible {
+  outline-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.18), var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.insta-tile .photo-slot {
+  position: absolute;
+  inset: 0;
+}
+
+.insta-tile:hover .photo-slot img {
+  transform: scale(1.06);
+}
+
+/* Captions would crowd the small mobile tiles — shown from tablet up.
+   The scrim runs the full height of the caption so the text stays
+   readable over a pale photo, not just over a dark one. */
+.insta-caption {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 0.9rem 0.75rem 0.6rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(38, 35, 29, 0.75);
+  background: linear-gradient(0deg, rgba(38, 35, 29, 0.88) 0%, rgba(38, 35, 29, 0.62) 55%, transparent 100%);
+}
+
+@media (min-width: 700px) {
+  .insta-caption {
+    display: block;
+  }
+}
+
+.insta-widget-slot:not([hidden]) {
+  margin-bottom: var(--space-3);
+}
+
+/* =========================================================
+   Testimonials — real Tripadvisor reviews
+   ========================================================= */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+.rating-badge .stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-amber);
+}
+
+.rating-badge .stars svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rating-badge strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  color: var(--color-charcoal);
+}
+
+.rating-badge span {
+  font-size: var(--fs-sm);
+  color: var(--color-charcoal-soft);
+}
+
+.testimonial-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.testimonial-card .stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-amber);
+}
+
+.testimonial-card .stars svg {
+  width: 16px;
+  height: 16px;
+}
+
+.testimonial-card blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--color-charcoal);
+  line-height: 1.5;
+}
+
+.testimonial-card figcaption {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+}
+
+.testimonial-card figcaption strong {
+  display: block;
+  color: var(--color-charcoal);
+}
+
+.testimonial-card figcaption span {
+  color: var(--color-charcoal-soft);
+  font-size: var(--fs-xs);
+}
+
+/* =========================================================
+   Order / Click & Collect
+   ========================================================= */
+.order-steps {
+  display: grid;
+  gap: var(--space-2);
+  margin-block: var(--space-4);
+}
+
+@media (min-width: 700px) {
+  .order-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.order-cta {
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+.order-step {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  padding: var(--space-3);
+  background: var(--glass-bg-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-md);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.order-step:hover,
+.order-step:focus-within {
+  border-color: rgba(246, 241, 231, 0.75);
+  box-shadow: 0 0 0 4px rgba(246, 241, 231, 0.16);
+}
+
+.order-step .step-num {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-charcoal);
+  color: var(--color-on-charcoal);
+  font-family: var(--font-display);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-step h3 {
+  font-size: var(--fs-base);
+  font-family: var(--font-body);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  /* Sits on a light glass card, so it must not inherit the sage
+     section's cream text colour — match the body copy beneath it. */
+  color: var(--color-charcoal);
+}
+
+.order-step p {
+  color: var(--color-charcoal-soft);
+  font-size: var(--fs-sm);
+}
+
+.field {
+  margin-bottom: var(--space-3);
+}
+
+.field label {
+  display: block;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  margin-bottom: 0.35rem;
+}
+
+.field .hint {
+  font-weight: 400;
+  color: var(--color-charcoal-soft);
+  font-size: var(--fs-xs);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-height: 48px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  padding: 0.7rem 0.9rem;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--color-sage-dark);
+}
+
+.field-row {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (min-width: 560px) {
+  .field-row.two {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.form-note {
+  font-size: var(--fs-xs);
+  color: var(--color-charcoal-soft);
+  margin-top: var(--space-2);
+}
+
+.field-error {
+  display: none;
+  margin-top: 0.35rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--color-danger);
+}
+
+.field-error.is-visible {
+  display: block;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.form-status {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  display: none;
+}
+
+.form-status.is-visible {
+  display: block;
+}
+
+.form-status.is-error {
+  color: var(--color-danger);
+}
+
+.form-status.is-success {
+  color: var(--color-success);
+}
+
+/* =========================================================
+   Visit us
+   ========================================================= */
+/* Hours card and map sit side by side, matched in height */
+.visit-layout {
+  display: grid;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  .visit-layout {
+    grid-template-columns: minmax(320px, 0.85fr) 1.15fr;
+  }
+}
+
+.visit-layout .visit-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-address {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+  color: var(--color-charcoal-soft);
+}
+
+.visit-address svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--color-sage-dark);
+  margin-top: 1px;
+}
+
+.visit-layout .btn {
+  margin-top: var(--space-3);
+}
+
+.visit-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.visit-card:hover,
+.visit-card:focus-within {
+  border-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.14), var(--shadow-md);
+}
+
+.visit-card h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+}
+
+.info-row {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+}
+
+.info-row svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-sage-dark);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-row a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-3);
+}
+
+.hours-table td {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+}
+
+/* Times line up column-wise instead of jittering between rows. */
+.hours-table td:last-child {
+  font-variant-numeric: tabular-nums;
+}
+
+.hours-table td:last-child {
+  text-align: right;
+  font-weight: 700;
+  color: var(--color-charcoal);
+}
+
+.hours-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Today's row. Bold as well as coloured, so the highlight does not depend
+   on colour alone. */
+.hours-table tr.is-today td {
+  color: var(--color-amber-deep);
+  font-weight: 700;
+}
+
+.map-embed {
+  display: flex;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.map-embed:hover,
+.map-embed:focus-within {
+  border-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.14), var(--shadow-md);
+}
+
+.map-embed-inner {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+/* On desktop the map fills the row height instead of forcing its own */
+@media (min-width: 900px) {
+  .map-embed-inner {
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+}
+
+.map-embed-inner iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* =========================================================
+   Contact / booking
+   ========================================================= */
+.contact .container {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.contact-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.contact-panel:hover,
+.contact-panel:focus-within {
+  border-color: var(--glass-glow);
+  box-shadow: 0 0 0 4px rgba(201, 130, 30, 0.14), var(--shadow-md);
+}
+
+@media (min-width: 900px) {
+  .contact .container {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.site-footer {
+  background: var(--color-charcoal);
+  color: var(--color-cream-deep);
+  padding-block: var(--space-5) var(--space-3);
+}
+
+/* Clear the fixed order bar so the last line of the footer is reachable. */
+@media (max-width: 767px) {
+  .site-footer {
+    padding-bottom: calc(var(--space-3) + 76px);
+  }
+}
+
+.footer-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: var(--space-2);
+}
+
+.footer-brand svg {
+  width: 34px;
+  height: 34px;
+  color: var(--color-amber);
+}
+
+.footer-col p,
+.footer-col a {
+  color: #cfc6ae;
+  font-size: var(--fs-sm);
+  /* The email address is one long token in a narrow column. */
+  overflow-wrap: anywhere;
+}
+
+.footer-contact-line {
+  margin-top: 0.5rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin-bottom: var(--space-2);
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: var(--space-2);
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #4c4738;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+
+.footer-social a:hover {
+  border-color: var(--color-amber);
+  background: rgba(201, 130, 30, 0.15);
+}
+
+.footer-social svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-bottom {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid #4c4738;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: #9c927a;
+}
+
+@media (min-width: 700px) {
+  .footer-grid {
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  }
+}
+
+/* =========================================================
+   Scroll reveal — considered, not blanket-uniform
+
+   The hidden starting state is scoped to .js-anim, which the inline
+   script in <head> adds only when JavaScript is running. Without JS
+   (screenshot/thumbnail capture, crawlers, a script failure) the page
+   renders fully visible instead of as a blank cream rectangle.
+   ========================================================= */
+.js-anim [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+}
+
+.js-anim [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-anim [data-reveal-fade] {
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+}
+
+.js-anim [data-reveal-fade].is-visible {
+  opacity: 1;
+}
+
+.js-anim [data-reveal-scale] {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+}
+
+.js-anim [data-reveal-scale].is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.js-anim [data-reveal-group] > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+
+.js-anim [data-reveal-group].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-anim [data-reveal-group].is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.js-anim [data-reveal-group].is-visible > *:nth-child(2) { transition-delay: 70ms; }
+.js-anim [data-reveal-group].is-visible > *:nth-child(3) { transition-delay: 140ms; }
+.js-anim [data-reveal-group].is-visible > *:nth-child(4) { transition-delay: 210ms; }
+.js-anim [data-reveal-group].is-visible > *:nth-child(5) { transition-delay: 280ms; }
+.js-anim [data-reveal-group].is-visible > *:nth-child(6) { transition-delay: 350ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js-anim [data-reveal],
+  .js-anim [data-reveal-fade],
+  .js-anim [data-reveal-scale],
+  .js-anim [data-reveal-group] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =========================================================
+   Sticky mobile order bar — mobile-specific, not shrunk desktop
+   ========================================================= */
+.mobile-order-bar {
+  position: fixed;
+  left: var(--space-2);
+  right: var(--space-2);
+  bottom: var(--space-2);
+  z-index: 90;
+  display: flex;
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+  padding: 0.4rem;
+  gap: 0.4rem;
+  transform: translateY(120%);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.mobile-order-bar.is-visible {
+  transform: translateY(0);
+}
+
+.mobile-order-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-pill);
+  min-height: 48px;
+}
+
+.mobile-order-bar a.is-primary {
+  background: var(--color-amber);
+  color: var(--color-charcoal);
+}
+
+/* Call is the actual primary conversion action — extra-prominent focus ring */
+.mobile-order-bar a.is-primary:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(201, 130, 30, 0.45);
+}
+
+.mobile-order-bar svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (min-width: 768px) {
+  .mobile-order-bar {
+    display: none;
+  }
+}
+
+/* =========================================================
+   Back to top
+   ========================================================= */
+.back-to-top {
+  position: fixed;
+  right: var(--space-2);
+  bottom: 90px;
+  z-index: 85;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out),
+    visibility var(--dur-base), background var(--dur-fast) var(--ease-out);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-sage-dark);
+}
+
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (min-width: 768px) {
+  .back-to-top {
+    bottom: var(--space-3);
+  }
+}
+
+/* =========================================================
+   Touch target sizing
+   On touch devices (phones and tablets) links that are tapped
+   rather than clicked need a comfortably large hit area. These
+   rules only apply where there is no hover-capable pointer, so
+   desktop spacing and density are left exactly as designed.
+   ========================================================= */
+@media (hover: none) and (pointer: coarse) {
+  .footer-col ul a,
+  .nav-desktop a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .info-row a,
+  .social-row a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* Inline links inside running text stay inline, but get a slightly
+     larger vertical hit area without disturbing the line box. */
+  .form-note a,
+  .menu-note a {
+    display: inline-block;
+    padding-block: 0.4rem;
+  }
+}

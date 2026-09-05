@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dan's Cafe — Breakfast, Brunch &amp; Diner in Whitchurch</title>
+  <meta name="description" content="Dan's Cafe, Whitchurch — breakfast, brunch and diner classics cooked fresh every day. View the menu, order for collection, or find us on Bridgewater Street." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Enables the scroll-reveal animations only when JS is running, so the
+       page still renders fully visible for screenshots, previews and crawlers. -->
+  <script>document.documentElement.classList.add('js-anim');</script>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237C8A73'/%3E%3Cellipse cx='32' cy='47' rx='15' ry='3' fill='%23F6F1E7'/%3E%3Cpath d='M17 22h28v11a14 14 0 0 1-14 14 14 14 0 0 1-14-14V22Z' fill='%23F6F1E7'/%3E%3Cpath d='M45 25h4a7 7 0 0 1 0 14h-4' fill='none' stroke='%23F6F1E7' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- SVG sprite: shared icon symbols -->
+  <svg class="visually-hidden" aria-hidden="true">
+    <symbol id="icon-cup" viewBox="0 0 64 64">
+      <ellipse cx="28" cy="52" rx="18" ry="3.5" fill="currentColor" opacity=".9"/>
+      <path d="M12 24h32v14a16 16 0 0 1-16 16h0a16 16 0 0 1-16-16V24Z" fill="currentColor"/>
+      <path d="M44 28h5a9 9 0 0 1 0 18h-5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M20 12c-2.5 3-2.5 5 0 8M28 10c-2.5 3-2.5 5 0 8M36 12c-2.5 3-2.5 5 0 8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24">
+      <path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="12" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <path d="M12 2.8l2.7 5.9 6.4.7-4.8 4.4 1.3 6.4L12 16.9l-5.6 3.3 1.3-6.4-4.8-4.4 6.4-.7L12 2.8Z" fill="currentColor"/>
+    </symbol>
+    <!-- Eyebrow icons: one per section, matching its subject -->
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path d="M12 21.5s7-6.7 7-11.9A7 7 0 0 0 5 9.6c0 5.2 7 11.9 7 11.9Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+      <circle cx="12" cy="9.6" r="2.6" fill="none" stroke="currentColor" stroke-width="1.9"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24">
+      <path d="M12 20.3s-7.6-4.6-7.6-9.6a4.3 4.3 0 0 1 7.6-2.7 4.3 4.3 0 0 1 7.6 2.7c0 5-7.6 9.6-7.6 9.6Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-pan" viewBox="0 0 24 24">
+      <path d="M3 11h11a0 0 0 0 1 0 0v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-2Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+      <path d="M14 12.5h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+      <path d="M6 8c-1-1.4-1-2.4 0-3.8M10 8c-1-1.4-1-2.4 0-3.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="1.9"/>
+      <circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.9"/>
+      <circle cx="16.7" cy="7.3" r="1.1" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-quote" viewBox="0 0 24 24">
+      <path d="M9.2 6.5C6.3 7.6 4.5 10 4.5 13.1c0 2.6 1.5 4.4 3.6 4.4 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.6 0-.8.1.4-1.5 1.6-2.7 3.1-3.4l-1.5-1.4ZM18.2 6.5c-2.9 1.1-4.7 3.5-4.7 6.6 0 2.6 1.5 4.4 3.6 4.4 1.9 0 3.3-1.4 3.3-3.2 0-1.8-1.3-3.1-3-3.1-.3 0-.6 0-.8.1.4-1.5 1.6-2.7 3.1-3.4l-1.5-1.4Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24">
+      <path d="M5 8h14l-1.1 11.2a1.8 1.8 0 0 1-1.8 1.6H7.9a1.8 1.8 0 0 1-1.8-1.6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+      <path d="M8.8 8V6.4a3.2 3.2 0 0 1 6.4 0V8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24">
+      <path d="M20 12.6c0 3.6-3.6 6.5-8 6.5-.9 0-1.8-.1-2.6-.4L4.5 20.5l1.3-3.4C4.7 15.9 4 14.3 4 12.6 4 9 7.6 6.1 12 6.1s8 2.9 8 6.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ HEADER ============
+       The header and footer are the two shared blocks. If either changes,
+       change it in every .html file in this folder. Right now there is only
+       one page (index.html), so there is only one copy of each. -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <a class="brand" href="#top">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#icon-cup"/></svg>
+        <span>Dan's Cafe<span class="brand-sub">Whitchurch</span></span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Socials</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#order">Order</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-primary btn-magnetic header-cta" href="#order" data-magnetic>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5" fill="currentColor"/><circle cx="18" cy="20" r="1.5" fill="currentColor"/></svg>
+        Order for Collection
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile" aria-label="Open menu">
+        <svg class="icon-menu" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav-mobile" id="navMobile" aria-label="Mobile">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Socials</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary header-cta" href="#order">Order for Collection</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div id="top"></div>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-pin"/></svg></span>Whitchurch, Shropshire</p>
+          <h1>Breakfast, brunch &amp; diner classics, cooked <em>fresh</em></h1>
+          <p>A modern, welcoming cafe on Bridgewater Street — from a full English and a loaded breakfast burrito, to burgers, roasts and a proper milkshake. Everyone's welcome at Dan's.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-magnetic" href="#menu" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h12M6 8h12M9 21l3-3 3 3M6 13h12l-1 5a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2l-1-5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              View Menu
+            </a>
+            <a class="btn btn-ghost" href="#order">Order for Collection</a>
+          </div>
+
+          <ul class="hero-trust">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Freshly cooked daily
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Open 7 days a week
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Everyone welcome
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-media" data-reveal data-parallax>
+          <div class="hero-banner">
+            <span class="hero-banner-rule" aria-hidden="true"></span>
+            <svg class="hero-banner-mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#icon-cup"/></svg>
+            <span class="hero-banner-text">
+              <strong>DAN'S CAFE</strong>
+              <span>Estd 2022 &middot; Whitchurch</span>
+            </span>
+            <span class="hero-banner-rule" aria-hidden="true"></span>
+          </div>
+
+          <div class="hero-photo">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Inside Dan's Cafe</strong>
+                <span>images/interior-window-bar.jpg</span>
+              </div>
+              <img src="images/interior-window-bar.jpg" alt="Inside Dan's Cafe — window bar seating with hanging Edison bulbs and plants" loading="eager" onerror="this.remove()" />
+            </div>
+          </div>
+          <svg class="hero-badge" viewBox="0 0 300 300" role="img" aria-label="Dan's Cafe, established 2022, Whitchurch">
+            <circle cx="150" cy="150" r="146" fill="#7C8A73"/>
+            <circle cx="150" cy="150" r="146" fill="none" stroke="#F6F1E7" stroke-width="3"/>
+            <circle cx="150" cy="150" r="128" fill="none" stroke="#F6F1E7" stroke-width="1.5" opacity=".6"/>
+            <path id="badgeArc" d="M 58,150 A 92,92 0 0 1 242,150" fill="none"/>
+            <text font-family="Fraunces, serif" font-weight="700" font-size="34" letter-spacing="4" fill="#F6F1E7">
+              <textPath href="#badgeArc" startOffset="50%" text-anchor="middle">DAN'S</textPath>
+            </text>
+            <use href="#icon-cup" x="118" y="128" width="64" height="64" color="#F6F1E7"/>
+            <text x="82" y="168" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="13" letter-spacing="2" fill="#F6F1E7" text-anchor="middle">ESTD</text>
+            <text x="218" y="168" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="13" letter-spacing="2" fill="#F6F1E7" text-anchor="middle">2022</text>
+            <text x="150" y="222" font-family="Fraunces, serif" font-weight="700" font-size="38" letter-spacing="2" fill="#F6F1E7" text-anchor="middle">CAFE</text>
+            <text x="150" y="245" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" font-size="12" letter-spacing="3.5" fill="#F6F1E7" opacity=".85" text-anchor="middle">WHITCHURCH</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <!-- Scrolling banner. To edit: change the phrases in the FIRST group
+           below, then make the SECOND group match exactly — the duplicate
+           set is what makes the scroll loop seamlessly.
+           Hovering the strip pauses it; it does not animate at all for
+           visitors who have "reduce motion" turned on. -->
+      <div class="marquee-track">
+        <span>Fresh Breakfast &amp; Brunch</span>
+        <span>Burgers &amp; Diner Classics</span>
+        <span>Loaded Milkshakes</span>
+        <span>Locally Sourced Meat</span>
+        <span>Call for Collection</span>
+        <span>Sunday Roasts to Take Away</span>
+        <span>Est. 2022, Whitchurch</span>
+
+        <span>Fresh Breakfast &amp; Brunch</span>
+        <span>Burgers &amp; Diner Classics</span>
+        <span>Loaded Milkshakes</span>
+        <span>Locally Sourced Meat</span>
+        <span>Call for Collection</span>
+        <span>Sunday Roasts to Take Away</span>
+        <span>Est. 2022, Whitchurch</span>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about-media" data-reveal-scale>
+          <div class="photo-slot">
+            <div class="photo-fallback">
+              <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+              <strong>Dan's Cafe</strong>
+              <span>images/interior-welcome-board.jpg</span>
+            </div>
+            <img src="images/interior-welcome-board.jpg" alt="A chalkboard reading 'Welcome to Dan's Cafe' beside hanging plants" loading="lazy" onerror="this.remove()" />
+          </div>
+        </div>
+        <div class="about-copy" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-heart"/></svg></span>Our Story</p>
+          <h2>A proper local cafe, made for everyone</h2>
+          <p>Dan's Cafe has been serving Whitchurch and the surrounding area since 2022 — a modern, welcoming spot for breakfast, brunch and diner-style classics, cooked fresh every day.</p>
+          <p>Whether you're in for a full English, a loaded breakfast burrito, a burger and fries, or just a coffee and a loaded milkshake, everyone's welcome at Dan's — locals, families, dog walkers and passers-through alike.</p>
+          <div class="about-stats">
+            <div>
+              <strong>7</strong>
+              <span>Days a week</span>
+            </div>
+            <div>
+              <strong>100%</strong>
+              <span>Cooked to order</span>
+            </div>
+            <div>
+              <strong>2022</strong>
+              <span>Established</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <section class="section section-sage" id="menu">
+      <div class="container">
+        <div class="section-head center" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-pan"/></svg></span>What's Cooking</p>
+          <h2>The menu</h2>
+          <p>The full menu and daily specials are always on the board in-store — here's what's on it.</p>
+        </div>
+
+        <!-- ==========================================================
+             MENU BOARDS
+             ----------------------------------------------------------
+             Each card looks for a real photo first. Until that photo
+             exists, the onerror swaps in the matching placeholder from
+             images/. To go live, just save your own photo into images/
+             with the exact filename in the src below — nothing else
+             needs changing.
+             ========================================================== -->
+        <div class="menu-photo-grid" data-reveal-group>
+          <figure class="menu-photo-card">
+            <div class="menu-photo-media card-frame">
+              <div class="photo-slot">
+                <div class="photo-fallback">
+                  <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                  <strong>Breakfast Menu</strong>
+                  <span>images/menu-board-breakfast.jpg</span>
+                </div>
+                <img src="images/menu-board-breakfast.jpg" alt="Dan's Cafe breakfast menu board" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder-menu-board-breakfast.svg'" />
+              </div>
+            </div>
+            <figcaption class="menu-photo-caption">Breakfast</figcaption>
+          </figure>
+          <figure class="menu-photo-card">
+            <div class="menu-photo-media card-frame">
+              <div class="photo-slot">
+                <div class="photo-fallback">
+                  <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                  <strong>Diner Menu</strong>
+                  <span>images/menu-board-diner.jpg</span>
+                </div>
+                <img src="images/menu-board-diner.jpg" alt="Dan's Cafe diner and burgers menu board" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder-menu-board-diner.svg'" />
+              </div>
+            </div>
+            <figcaption class="menu-photo-caption">Diner &amp; Burgers</figcaption>
+          </figure>
+          <figure class="menu-photo-card">
+            <div class="menu-photo-media card-frame">
+              <div class="photo-slot">
+                <div class="photo-fallback">
+                  <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                  <strong>Drinks Menu</strong>
+                  <span>images/menu-board-drinks.jpg</span>
+                </div>
+                <img src="images/menu-board-drinks.jpg" alt="Dan's Cafe drinks and shakes menu board" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder-menu-board-drinks.svg'" />
+              </div>
+            </div>
+            <figcaption class="menu-photo-caption">Shakes &amp; Drinks</figcaption>
+          </figure>
+        </div>
+
+        <p class="menu-note">* Placeholder boards — drop your own menu photos into <code>images/</code> using the filenames above and they'll appear here automatically. Update the images any time your menu changes, no code edits needed.</p>
+      </div>
+    </section>
+
+    <!-- ============ SOCIALS ============ -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="socials-head" data-reveal>
+          <div class="section-head">
+            <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-instagram"/></svg></span>Follow Along</p>
+            <h2>Life at Dan's, on Socials</h2>
+            <p>A taste of what comes out of our kitchen — follow us for daily specials and behind-the-scenes.</p>
+          </div>
+
+          <div class="socials-links">
+            <a class="social-logo" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/><circle cx="16.6" cy="7.4" r="1" fill="currentColor"/></svg>
+              <span>
+                <strong>Instagram</strong>
+                <em>@danscafewhitchurch</em>
+              </span>
+            </a>
+            <a class="social-logo" href="https://facebook.com/danscafewhitchurch" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <span>
+                <strong>Facebook</strong>
+                <em>Dan's Cafe Whitchurch</em>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ==========================================================
+             AUTO-UPDATING INSTAGRAM FEED (optional upgrade)
+             ----------------------------------------------------------
+             Instagram no longer serves post content to logged-out
+             visitors via its own embed code, so the official embeds
+             render blank. To show your genuinely LATEST posts
+             automatically, sign up for a free feed widget
+             (lightwidget.com or snapwidget.com), connect the
+             @danscafewhitchurch account, then paste the <iframe> or
+             <script> they give you inside the div below and delete the
+             .insta-grid photo grid underneath it.
+             ========================================================== -->
+        <div class="insta-widget-slot" hidden>
+          <!-- PASTE WIDGET EMBED CODE HERE -->
+        </div>
+
+        <div class="insta-grid" data-reveal-group>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>The Full English</strong>
+                <span>images/food-full-english.jpg</span>
+              </div>
+              <img src="images/food-full-english.jpg" alt="A full English breakfast with bacon, sausage, black pudding, egg, hash brown, beans, mushrooms and tomato" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">The Full English</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Burgers</strong>
+                <span>images/food-burger.jpg</span>
+              </div>
+              <img src="images/food-burger.jpg" alt="A stacked cheeseburger with crispy chicken, served on a plate" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Burgers</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Breakfast Burrito</strong>
+                <span>images/food-breakfast-burrito.jpg</span>
+              </div>
+              <img src="images/food-breakfast-burrito.jpg" alt="Breakfast burrito cut in half, served with beans on a plate" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Breakfast Burrito</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Avo &amp; Poached Eggs</strong>
+                <span>images/food-avo-poached-eggs.jpg</span>
+              </div>
+              <img src="images/food-avo-poached-eggs.jpg" alt="Smashed avocado on toast with poached eggs, chilli and pea shoots" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Avo &amp; Poached Eggs</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Sandwich Platters</strong>
+                <span>images/food-sandwiches.jpg</span>
+              </div>
+              <img src="images/food-sandwiches.jpg" alt="A Dan's Cafe sandwich platter with sandwiches, sausage rolls, pork pies and crisps" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Sandwich Platters</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Sunday Roast</strong>
+                <span>images/gallery-sunday-roast.jpg</span>
+              </div>
+              <img src="images/gallery-sunday-roast.jpg" alt="Sunday roast takeaway trays with meat, Yorkshire pudding, vegetables and gravy" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Sunday Roast</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Shakes</strong>
+                <span>images/food-shake.jpg</span>
+              </div>
+              <img src="images/food-shake.jpg" alt="A cold blended shake in a glass beside a fern" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Shakes</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Golden Hour</strong>
+                <span>images/interior-golden-hour.jpg</span>
+              </div>
+              <img src="images/interior-golden-hour.jpg" alt="Window bar seating at Dan's Cafe at sunset, with warm pendant bulbs" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Golden Hour</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Inside Seating</strong>
+                <span>images/interior-booths.jpg</span>
+              </div>
+              <img src="images/interior-booths.jpg" alt="Booth seating with wood panelling, cushions and pendant lighting" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Inside Seating</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Little Details</strong>
+                <span>images/interior-decor.jpg</span>
+              </div>
+              <img src="images/interior-decor.jpg" alt="Shelves with plants, prints and a sage green clock on the cafe wall" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Little Details</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Dan's Cafe</strong>
+                <span>images/sign-door-logo.jpg</span>
+              </div>
+              <img src="images/sign-door-logo.jpg" alt="Dan's Cafe logo on the sage green door" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Dan's Cafe</span>
+          </a>
+          <a class="insta-tile" href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener">
+            <div class="photo-slot">
+              <div class="photo-fallback">
+                <svg aria-hidden="true"><use href="#icon-camera"/></svg>
+                <strong>Bridgewater Street</strong>
+                <span>images/sign-window-rain.jpg</span>
+              </div>
+              <img src="images/sign-window-rain.jpg" alt="Dan's Cafe window sign and Open sign seen through rain-flecked glass" loading="lazy" onerror="this.remove()" />
+            </div>
+            <span class="insta-caption">Bridgewater Street</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head center" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-quote"/></svg></span>What People Say</p>
+          <h2>Loved by Whitchurch</h2>
+          <a class="rating-badge" href="https://www.tripadvisor.co.uk/Restaurant_Review-g662358-d25131257-Reviews-Dan_s_Cafe-Whitchurch_Shropshire_England.html" target="_blank" rel="noopener">
+            <span class="stars">
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+              <svg aria-hidden="true"><use href="#icon-star"/></svg>
+            </span>
+            <strong>4.8 out of 5</strong>
+            <span>· 36 reviews on Tripadvisor</span>
+          </a>
+        </div>
+
+        <!-- ==========================================================
+             HOW TO SWAP A REVIEW
+             ----------------------------------------------------------
+             Each review is one <figure class="testimonial-card"> block.
+             To change one, edit these three parts inside a block:
+               1. <blockquote>  – the review text (keep the &ldquo; &rdquo; quote marks)
+               2. <strong>      – the reviewer's name
+               3. <span>        – their location and the date, e.g. "Whitchurch · Tripadvisor, May 2025"
+             For a 4-star review, delete one of the five <svg> star lines.
+             Only quote reviews that are genuinely yours, and keep the
+             wording as written by the reviewer.
+             ========================================================== -->
+        <div class="testimonial-grid" data-reveal-group>
+          <figure class="testimonial-card card-glass">
+            <span class="stars" aria-hidden="true">
+              <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
+            </span>
+            <blockquote>&ldquo;Food is fantastic. I had eggs Benedict this morning and it was one of the best I've ever had.&rdquo;</blockquote>
+            <figcaption>
+              <strong>Julie B</strong>
+              <span>Whitchurch · Tripadvisor, May 2025</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card card-glass">
+            <span class="stars" aria-hidden="true">
+              <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
+            </span>
+            <blockquote>&ldquo;Everything about our plates was spot on. The eggs poached to perfection, the tenderness and flavours in the ham, and the perfectly toasted muffin.&rdquo;</blockquote>
+            <figcaption>
+              <strong>Amber R</strong>
+              <span>Tripadvisor, May 2025</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card card-glass">
+            <span class="stars" aria-hidden="true">
+              <svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg>
+            </span>
+            <blockquote>&ldquo;This cafe is clean and welcoming, with a great menu&hellip; all were delicious and the ingredients were top quality.&rdquo;</blockquote>
+            <figcaption>
+              <strong>Julie2309</strong>
+              <span>Bolton · Tripadvisor, Aug 2025</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ORDER / CLICK & COLLECT ============ -->
+    <section class="section section-sage" id="order">
+      <div class="container">
+        <div class="section-head center" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-bag"/></svg></span>Click &amp; Collect</p>
+          <h2>Order ahead for collection</h2>
+          <p>Give us a call, let us know what you'd like, and we'll have it ready fresh for your chosen pickup time.</p>
+        </div>
+
+        <div class="order-steps" data-reveal-group>
+          <div class="order-step">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div>
+              <h3>Give us a call</h3>
+              <p>Ring the cafe on 01948 258170.</p>
+            </div>
+          </div>
+          <div class="order-step">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div>
+              <h3>Tell us your order</h3>
+              <p>Let us know what you'd like from the menu.</p>
+            </div>
+          </div>
+          <div class="order-step">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div>
+              <h3>Collect at your chosen time</h3>
+              <p>We'll have it cooked fresh and ready for you.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-cta" data-reveal>
+          <a class="btn btn-on-sage btn-block btn-magnetic" href="tel:+441948258170" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 2c1 3 3 5 6 6l2-2 5 2v2c0 1-1 2-2 2C10 20 4 14 4 5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            Call to Order — 01948 258170
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VISIT US ============ -->
+    <section class="section visit" id="visit">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-pin"/></svg></span>Find Us</p>
+          <h2>Visit Dan's Cafe</h2>
+          <p>Free off-street parking, right in the middle of Whitchurch.</p>
+        </div>
+
+        <div class="visit-layout">
+          <div class="visit-card" data-reveal>
+            <h3>Opening hours</h3>
+            <table class="hours-table" id="hoursTable">
+              <caption class="visually-hidden">Dan's Cafe opening hours, Sunday to Saturday</caption>
+              <tbody>
+                <tr data-day="0"><td>Sunday</td><td>8:00am – 2:30pm</td></tr>
+                <tr data-day="1"><td>Monday</td><td>7:00am – 4:00pm</td></tr>
+                <tr data-day="2"><td>Tuesday</td><td>7:00am – 4:00pm</td></tr>
+                <tr data-day="3"><td>Wednesday</td><td>7:00am – 4:00pm</td></tr>
+                <tr data-day="4"><td>Thursday</td><td>7:00am – 4:00pm</td></tr>
+                <tr data-day="5"><td>Friday</td><td>7:00am – 4:00pm</td></tr>
+                <tr data-day="6"><td>Saturday</td><td>7:00am – 4:00pm</td></tr>
+              </tbody>
+            </table>
+
+            <div class="visit-address">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+              <span>Unit 2, Bridgewater Buildings, Bridgewater St,<br />Whitchurch, SY13 1QJ</span>
+            </div>
+
+            <a class="btn btn-primary btn-block btn-magnetic" href="https://www.google.com/maps/dir/?api=1&amp;destination=Dan%27s+Cafe,+Bridgewater+St,+Whitchurch+SY13+1QJ" target="_blank" rel="noopener" data-magnetic>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              Get Directions
+            </a>
+          </div>
+
+          <div class="map-embed" data-reveal>
+            <div class="map-embed-inner">
+              <iframe
+                title="Map showing the location of Dan's Cafe, Bridgewater Street, Whitchurch"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Dan%27s+Cafe,+Bridgewater+St,+Whitchurch+SY13+1QJ&z=18&output=embed">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT / BOOKING ============ -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div data-reveal>
+          <div class="section-head">
+            <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-chat"/></svg></span>Get In Touch</p>
+            <h2>Booking &amp; enquiries</h2>
+            <p>Planning a table for a group, or have a question? Send us a message and we'll get back to you.</p>
+          </div>
+          <div class="visit-card">
+            <div class="info-row">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4v7l16 1-16 1v7l20-8L4 4Z" fill="currentColor"/></svg>
+              <a href="mailto:danscafeinwhitchurch@gmail.com">danscafeinwhitchurch@gmail.com</a>
+            </div>
+            <div class="info-row">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 2c1 3 3 5 6 6l2-2 5 2v2c0 1-1 2-2 2C10 20 4 14 4 5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              <a href="tel:+441948258170">01948 258170</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-panel" data-reveal>
+          <!-- ==========================================================
+               CONTACT FORM
+               ----------------------------------------------------------
+               Every field already has a name attribute, so a server-side
+               or third-party handler can be dropped in without touching
+               this markup. To wire one up, add action="..." method="post"
+               to the <form> tag below and delete the submit handler at the
+               bottom of js/main.js. Until then it opens the visitor's own
+               email app with the message pre-filled.
+               ========================================================== -->
+          <form id="contactForm" name="enquiry" novalidate>
+            <div class="field-row two">
+              <div class="field">
+                <label for="contactName">Your name</label>
+                <input type="text" id="contactName" name="name" autocomplete="name" required aria-describedby="contactNameError" />
+                <p class="field-error" id="contactNameError"></p>
+              </div>
+              <div class="field">
+                <label for="contactPhone">Phone number</label>
+                <input type="tel" id="contactPhone" name="phone" autocomplete="tel" required aria-describedby="contactPhoneError" />
+                <p class="field-error" id="contactPhoneError"></p>
+              </div>
+            </div>
+            <div class="field-row two">
+              <div class="field">
+                <label for="contactDate">Preferred date <span class="hint">(optional)</span></label>
+                <input type="date" id="contactDate" name="date" />
+              </div>
+              <div class="field">
+                <label for="contactParty">Party size <span class="hint">(optional)</span></label>
+                <input type="number" id="contactParty" name="party" min="1" max="30" inputmode="numeric" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" required aria-describedby="contactMessageError"></textarea>
+              <p class="field-error" id="contactMessageError"></p>
+            </div>
+
+            <p class="form-status" id="contactStatus" role="alert"></p>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+            <p class="form-note">Your message goes straight to the cafe. We aim to reply within a day — for anything urgent, please call <a href="tel:+441948258170">01948 258170</a>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#icon-cup"/></svg>
+            Dan's Cafe
+          </div>
+          <p>Breakfast, brunch and diner classics in the heart of Whitchurch, Shropshire.</p>
+          <div class="footer-social">
+            <a href="https://facebook.com/danscafewhitchurch" target="_blank" rel="noopener" aria-label="Dan's Cafe on Facebook">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://instagram.com/danscafewhitchurch" target="_blank" rel="noopener" aria-label="Dan's Cafe on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="16.6" cy="7.4" r="1" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Socials</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#order">Order</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#visit">Opening hours</a></li>
+            <li><a href="#visit">Directions</a></li>
+            <li><a href="#contact">Contact us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Unit 2, Dan's Cafe, Bridgewater Buildings, Bridgewater St, Whitchurch, SY13 1QJ</p>
+          <p class="footer-contact-line"><a href="tel:+441948258170">01948 258170</a></p>
+          <p><a href="mailto:danscafeinwhitchurch@gmail.com">danscafeinwhitchurch@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Dan's Cafe, Whitchurch. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile-only sticky order bar: Call is the primary conversion action -->
+  <div class="mobile-order-bar" id="mobileOrderBar">
+    <a class="is-primary" href="tel:+441948258170">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 2c1 3 3 5 6 6l2-2 5 2v2c0 1-1 2-2 2C10 20 4 14 4 5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      Call
+    </a>
+    <a href="#order">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5" fill="currentColor"/><circle cx="18" cy="20" r="1.5" fill="currentColor"/></svg>
+      Order
+    </a>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
