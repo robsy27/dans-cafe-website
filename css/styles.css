@@ -2032,3 +2032,57 @@ a:hover > .photo-slot img {
 .footer-col p {
   overflow-wrap: anywhere;
 }
+
+/* =========================================================
+   Date / time / number inputs on iOS
+   Safari on iOS gives these inputs their own intrinsic width and
+   internal padding, ignoring width:100%. The result is a field that
+   runs wider than its siblings and sits out of alignment — most
+   visibly the "Preferred date" box on the enquiry form. Resetting
+   the native appearance hands sizing back to our own rules.
+   ========================================================= */
+.field input[type="date"],
+.field input[type="time"],
+.field input[type="number"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Safari left-pads and centres the value text, reserving extra width. */
+.field input[type="date"]::-webkit-date-and-time-value,
+.field input[type="time"]::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+
+/* Stop the picker button adding width of its own. */
+.field input[type="date"]::-webkit-calendar-picker-indicator,
+.field input[type="time"]::-webkit-calendar-picker-indicator {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+  padding: 0;
+}
+
+/* Number spinners also add width on some devices. */
+.field input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.field input[type="number"]::-webkit-outer-spin-button,
+.field input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Date inputs render ~2px taller than text inputs even with the native
+   appearance reset, which leaves "Preferred date" sitting out of line with
+   the fields around it. Pinning a single height keeps every single-line
+   field identical. The calc mirrors the box those fields already produce
+   (line-height + vertical padding + borders) so it still scales if the
+   type sizes change. Textareas are excluded — they set their own height. */
+.field input {
+  height: calc(1.6em + 1.4rem + 3px);
+}
