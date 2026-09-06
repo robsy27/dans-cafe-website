@@ -2381,3 +2381,147 @@ a:hover > .photo-slot img {
   letter-spacing: 0.04em;
   color: rgba(246, 241, 231, 0.82);
 }
+
+/* =========================================================
+   Cookie consent banner
+   ---------------------------------------------------------
+   Bottom-anchored so it never covers the hero or the nav.
+   Sits below the menu lightbox (z-index 1200) but above the
+   sticky order bar, and is hidden until main.js decides a
+   choice is actually needed.
+   ========================================================= */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1100;
+  padding: var(--space-2);
+  background: var(--color-charcoal);
+  color: var(--color-on-charcoal);
+  box-shadow: 0 -12px 40px rgba(38, 35, 29, 0.28);
+  animation: cookie-rise var(--dur-base) var(--ease-out);
+}
+
+.cookie-banner[hidden] { display: none; }
+
+@keyframes cookie-rise {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner { animation: none; }
+}
+
+.cookie-banner-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.cookie-banner-copy { min-width: 0; }
+
+.cookie-banner-title {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.cookie-banner-copy p:last-child {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: rgba(246, 241, 231, 0.82);
+  max-width: 70ch;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+/* Both choices are the same size and weight on purpose: a consent
+   banner that visually pushes you toward Accept isn't valid consent. */
+.btn-solid-sm,
+.btn-ghost-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.35rem;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+
+.btn-solid-sm {
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+  border: 1px solid var(--color-cream);
+}
+
+.btn-solid-sm:hover { background: #fff; }
+
+.btn-ghost-sm {
+  background: transparent;
+  color: var(--color-cream);
+  border: 1px solid rgba(246, 241, 231, 0.42);
+}
+
+.btn-ghost-sm:hover { border-color: var(--color-cream); background: rgba(246, 241, 231, 0.1); }
+
+.btn-solid-sm:focus-visible,
+.btn-ghost-sm:focus-visible {
+  outline: 3px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+@media (max-width: 719px) {
+  .cookie-banner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+  .cookie-banner-actions > * { flex: 1; }
+}
+
+/* The banner owns the bottom of the screen; the floating order bar lifts
+   above it by the banner's measured height (set by main.js) so the Call
+   button is never covered. Falls back to a sane value if JS hasn't
+   measured yet. */
+body.has-cookie-banner .mobile-order-bar {
+  bottom: calc(var(--space-2) + var(--cookie-banner-h, 140px));
+}
+
+/* Footer "Cookie settings" — a button, because it changes state rather
+   than navigating, styled to sit quietly with the copyright line. */
+.footer-legal { margin-left: auto; }
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.link-button:hover { opacity: 1; }
+
+.link-button:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}

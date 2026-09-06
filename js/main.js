@@ -521,4 +521,64 @@
     });
   }
 
+
+  /* ---------- Cookie consent ----------
+     The GA loader and the stored choice live in the inline <head> script
+     (window.dcConsent) so a returning visitor who accepted starts
+     analytics immediately. This half is only the banner UI. */
+  var cookieBanner = document.getElementById("cookieBanner");
+  var consentApi = window.dcConsent;
+
+  if (cookieBanner && consentApi) {
+    var acceptBtn = document.getElementById("cookieAccept");
+    var declineBtn = document.getElementById("cookieDecline");
+    var settingsBtn = document.getElementById("cookieSettings");
+    var orderBar = document.getElementById("mobileOrderBar");
+
+    function syncBannerHeight() {
+      if (cookieBanner.hidden) return;
+      document.documentElement.style.setProperty(
+        "--cookie-banner-h",
+        cookieBanner.offsetHeight + "px"
+      );
+    }
+
+    function showBanner() {
+      cookieBanner.hidden = false;
+      document.body.classList.add("has-cookie-banner");
+      syncBannerHeight();
+    }
+
+    function hideBanner() {
+      cookieBanner.hidden = true;
+      document.body.classList.remove("has-cookie-banner");
+    }
+
+    function choose(granted) {
+      if (granted) consentApi.accept();
+      else consentApi.decline();
+      hideBanner();
+      /* Send focus somewhere sensible rather than letting it fall to
+         <body> when the button that had it disappears. */
+      if (settingsBtn) settingsBtn.focus({ preventScroll: true });
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener("click", function () { choose(true); });
+    if (declineBtn) declineBtn.addEventListener("click", function () { choose(false); });
+
+    /* Withdrawing consent has to be as easy as giving it, so the footer
+       control reopens this at any time. */
+    if (settingsBtn) {
+      settingsBtn.addEventListener("click", function () {
+        showBanner();
+        if (declineBtn) declineBtn.focus({ preventScroll: true });
+      });
+    }
+
+    window.addEventListener("resize", syncBannerHeight, { passive: true });
+
+    /* Only interrupt someone who hasn't chosen yet. */
+    if (!consentApi.get()) showBanner();
+  }
+
 })();

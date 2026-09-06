@@ -16,6 +16,94 @@
        page still renders fully visible for screenshots, previews and crawlers. -->
   <script>document.documentElement.classList.add('js-anim');</script>
 
+  <!-- ============ ANALYTICS (consent-gated) ============
+       Google Analytics 4, property G-JT6TVBG15J.
+
+       Nothing Google-related is requested until the visitor accepts:
+       no gtag.js download, no cookies, no network calls. UK PECR
+       requires consent BEFORE analytics cookies are set, so the tag
+       cannot simply sit in the head as Google's copy-paste snippet
+       assumes.
+
+       This lives inline in <head> rather than in main.js so a returning
+       visitor who already accepted starts GA immediately, instead of
+       waiting for the deferred bundle.
+
+       To turn analytics off entirely, delete this block and the
+       cookie-banner markup near the end of <body>. -->
+  <script>
+    (function () {
+      var KEY = "dc-analytics-consent";
+      var GA_ID = "G-JT6TVBG15J";
+      var loaded = false;
+
+      function readConsent() {
+        /* Private browsing and blocked site-data both throw on access. */
+        try { return localStorage.getItem(KEY); } catch (e) { return null; }
+      }
+
+      function writeConsent(v) {
+        try { localStorage.setItem(KEY, v); } catch (e) {}
+      }
+
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        window.gtag = gtag;
+
+        /* Consent Mode: we only ever load this after an explicit yes to
+           analytics. Ads storage stays denied — the site runs no ads. */
+        gtag("consent", "default", {
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          analytics_storage: "granted"
+        });
+
+        gtag("js", new Date());
+        gtag("config", GA_ID, { anonymize_ip: true });
+
+        var sc = document.createElement("script");
+        sc.async = true;
+        sc.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+        document.head.appendChild(sc);
+      }
+
+      /* Withdrawing consent has to actually stop the processing, not just
+         stop it next time — so clear any GA cookies already set. They're
+         written on the registrable domain, so try both that and the host. */
+      function clearAnalyticsCookies() {
+        var host = location.hostname;
+        var parts = host.split(".");
+        var domains = ["", host, "." + host];
+        if (parts.length > 2) domains.push("." + parts.slice(-2).join("."));
+
+        document.cookie.split(";").forEach(function (c) {
+          var name = c.split("=")[0].trim();
+          if (name.indexOf("_ga") !== 0 && name.indexOf("_gid") !== 0) return;
+          domains.forEach(function (d) {
+            document.cookie =
+              name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" +
+              (d ? "; domain=" + d : "");
+          });
+        });
+      }
+
+      window.dcConsent = {
+        key: KEY,
+        get: readConsent,
+        accept: function () { writeConsent("granted"); loadAnalytics(); },
+        decline: function () { writeConsent("denied"); clearAnalyticsCookies(); },
+        load: loadAnalytics
+      };
+
+      if (readConsent() === "granted") loadAnalytics();
+    })();
+  </script>
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237C8A73'/%3E%3Cellipse cx='32' cy='47' rx='15' ry='3' fill='%23F6F1E7'/%3E%3Cpath d='M17 22h28v11a14 14 0 0 1-14 14 14 14 0 0 1-14-14V22Z' fill='%23F6F1E7'/%3E%3Cpath d='M45 25h4a7 7 0 0 1 0 14h-4' fill='none' stroke='%23F6F1E7' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -811,6 +899,9 @@
 
       <div class="footer-bottom">
         <span>© <span id="year"></span> Dan's Cafe, Whitchurch. All rights reserved.</span>
+        <span class="footer-legal">
+          <button type="button" class="link-button" id="cookieSettings">Cookie settings</button>
+        </span>
       </div>
     </div>
   </footer>
@@ -868,6 +959,30 @@
         <button type="button" class="menu-lightbox-arrow is-next" data-menu-step="1" aria-label="Next menu">
           <svg aria-hidden="true"><use href="#icon-chevron"/></svg>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ COOKIE CONSENT ============
+       Hand-written rather than a third-party consent tool: the usual
+       drop-in banners weigh 50-100KB and block rendering, which would
+       cost more than the analytics they gate. This is ~2KB and inert
+       until shown. Starts hidden; main.js reveals it only when no
+       choice has been stored yet. -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite"
+       aria-labelledby="cookieBannerTitle" aria-describedby="cookieBannerText" hidden>
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-copy">
+        <p class="cookie-banner-title" id="cookieBannerTitle">Cookies on this site</p>
+        <p id="cookieBannerText">
+          We'd like to use Google Analytics to understand how people use the site,
+          which sets a cookie. It's entirely optional &mdash; decline and nothing is
+          loaded or stored. Nothing here is used for advertising.
+        </p>
+      </div>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-ghost-sm" id="cookieDecline">Decline</button>
+        <button type="button" class="btn btn-solid-sm" id="cookieAccept">Accept</button>
       </div>
     </div>
   </div>
