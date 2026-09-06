@@ -10,7 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- ?v= is a cache-buster. Hostinger serves css/js with a 7-day
+       cache, so without this a returning visitor keeps the old files
+       for up to a week after an update. index.html itself is not
+       cached, so changing this number here invalidates them instantly.
+       BUMP THE VERSION whenever styles.css or main.js changes. -->
+  <link rel="stylesheet" href="css/styles.css?v=20260906-1" />
 
   <!-- Enables the scroll-reveal animations only when JS is running, so the
        page still renders fully visible for screenshots, previews and crawlers. -->
@@ -987,6 +992,6 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20260906-1"></script>
 </body>
 </html>
