@@ -2525,3 +2525,107 @@ body.has-cookie-banner .mobile-order-bar {
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
+
+/* =========================================================
+   Legal pages (privacy.html) — long-form reading column
+   ========================================================= */
+.container-narrow {
+  max-width: 46rem;
+}
+
+.legal {
+  padding-top: calc(var(--header-h) + var(--space-5));
+}
+
+.legal h1 {
+  font-size: var(--fs-2xl);
+  margin: 0.2rem 0 var(--space-2);
+}
+
+.legal h2 {
+  font-size: var(--fs-lg);
+  margin: var(--space-5) 0 var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.legal h3 {
+  font-size: var(--fs-md);
+  margin: var(--space-3) 0 var(--space-1);
+  color: var(--color-sage-dark);
+}
+
+.legal p,
+.legal li {
+  max-width: 68ch;
+  line-height: 1.7;
+}
+
+.legal ul {
+  margin: 0 0 var(--space-2) 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.legal-lede {
+  font-size: var(--fs-md);
+  color: var(--color-charcoal-soft);
+}
+
+.legal-meta {
+  font-size: var(--fs-xs);
+  color: var(--color-charcoal-soft);
+  margin-bottom: var(--space-4);
+}
+
+/* Legal basis callouts — quiet, but findable when skimming. */
+.legal-note {
+  border-left: 3px solid var(--color-sage);
+  padding: 0.15rem 0 0.15rem var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-charcoal-soft);
+}
+
+.legal-dim {
+  font-size: var(--fs-xs);
+  color: var(--color-charcoal-soft);
+}
+
+.legal code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--color-sage-tint);
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
+  overflow-wrap: anywhere;
+}
+
+/* Scrolls inside its own box on narrow screens rather than
+   forcing the page sideways. */
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: var(--fs-sm);
+  display: block;
+  overflow-x: auto;
+}
+
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+  min-width: 8rem;
+}
+
+.legal-table th {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-charcoal-soft);
+  background: var(--color-cream-deep);
+}
+
+.legal-table tbody tr:last-child td { border-bottom: 0; }
