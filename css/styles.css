@@ -2354,7 +2354,9 @@ a:hover > .photo-slot img {
 .menu-lightbox-stage.is-zoomed img {
   max-width: none;
   max-height: none;
-  width: 1206px;          /* the scans' native width — full sharpness */
+  /* Each scan's own native width, set by main.js — menus aren't all the
+     same resolution, and a fixed value would downscale the larger ones. */
+  width: var(--menu-zoom-w, 1206px);
   min-width: 100%;
   height: auto;
   margin: 0 auto;

@@ -393,6 +393,9 @@
     lbTotal.textContent = String(menus.length);
 
     function setZoom(on) {
+      if (on && lbImg.naturalWidth) {
+        lbStage.style.setProperty("--menu-zoom-w", lbImg.naturalWidth + "px");
+      }
       lbStage.classList.toggle("is-zoomed", on);
       if (lbZoom) {
         lbZoom.setAttribute("aria-pressed", String(on));
