@@ -1,0 +1,16 @@
+# Dan's Cafe — server rules
+#
+# Kept deliberately small. Everything here is guarded so that if a
+# module is unavailable the directive is skipped rather than erroring,
+# which on Apache would otherwise take the whole site down with a 500.
+
+# Serve the branded not-found page instead of the host's stock one.
+ErrorDocument 404 /404.html
+
+# One canonical hostname. www and the bare domain both resolve, which
+# splits search ranking across two addresses; send www to the bare one.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.danscafe\.co\.uk$ [NC]
+  RewriteRule ^(.*)$ https://danscafe.co.uk/$1 [R=301,L]
+</IfModule>
