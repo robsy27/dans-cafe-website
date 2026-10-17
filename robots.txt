@@ -1,0 +1,8 @@
+# Dan's Cafe — https://danscafe.co.uk
+User-agent: *
+Allow: /
+
+# The privacy notice carries its own noindex; no need to crawl it repeatedly.
+Disallow: /privacy.html
+
+Sitemap: https://danscafe.co.uk/sitemap.xml

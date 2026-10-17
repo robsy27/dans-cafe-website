@@ -1843,7 +1843,7 @@ a:hover > .photo-slot img {
   margin-top: 0.5rem;
 }
 
-.footer-col h4 {
+.footer-col h3 {
   font-family: var(--font-body);
   font-size: var(--fs-sm);
   text-transform: uppercase;
@@ -2631,3 +2631,23 @@ body.has-cookie-banner .mobile-order-bar {
 }
 
 .legal-table tbody tr:last-child td { border-bottom: 0; }
+
+/* =========================================================
+   Touch targets
+   ---------------------------------------------------------
+   The phone number and email are the two things a hungry
+   customer actually taps, and both were rendering about
+   20px tall. 44px is the accessibility guideline minimum.
+   ========================================================= */
+@media (hover: none) and (pointer: coarse) {
+  .contact-aside a[href^="tel:"],
+  .contact-aside a[href^="mailto:"],
+  .footer-col a[href^="tel:"],
+  .footer-col a[href^="mailto:"],
+  .info-row a[href^="tel:"],
+  .info-row a[href^="mailto:"] {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}

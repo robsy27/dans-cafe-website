@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found — Dan's Cafe, Whitchurch</title>
+  <meta name="description" content="That page doesn't exist. Head back to Dan's Cafe in Whitchurch for the menu, opening hours and how to find us." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#7c8a73" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Bump ?v= in step with index.html whenever css changes. -->
+  <link rel="stylesheet" href="/css/styles.css?v=20261017-1" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <style>
+    /* Self-contained so this page still works even if the stylesheet
+       ever fails to load — a 404 is the worst place for a blank screen. */
+    .nf {
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-5, 3rem) var(--container-pad, 1.25rem);
+    }
+    .nf-inner { max-width: 34rem; }
+    .nf-mark { width: 72px; height: 72px; margin: 0 auto var(--space-3, 1.5rem); display: block; color: var(--color-sage, #7c8a73); }
+    .nf h1 { font-size: var(--fs-2xl, 2.5rem); margin: 0 0 var(--space-2, 1rem); }
+    .nf p { color: var(--color-charcoal-soft, #55503f); margin: 0 auto var(--space-4, 2rem); max-width: 30rem; }
+    .nf-actions { display: flex; flex-wrap: wrap; gap: var(--space-2, 1rem); justify-content: center; }
+    .nf-links { margin-top: var(--space-4, 2rem); font-size: var(--fs-sm, 1rem); }
+    .nf-links a { margin: 0 0.6rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="icon-cup" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="47" rx="15" ry="3" fill="currentColor" opacity="0.35"/>
+      <path d="M17 22h28v11a14 14 0 0 1-14 14 14 14 0 0 1-14-14V22Z" fill="currentColor"/>
+      <path d="M45 25h4a7 7 0 0 1 0 14h-4" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <a class="brand" href="/">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#icon-cup"/></svg>
+        <span>Dan's Cafe<span class="brand-sub">Whitchurch</span></span>
+      </a>
+      <a class="btn btn-primary header-cta" href="/">Back to the site</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section nf">
+      <div class="nf-inner">
+        <svg class="nf-mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#icon-cup"/></svg>
+        <h1>We couldn't find that page</h1>
+        <p>
+          The link may be out of date, or there might be a typo in the address.
+          Everything &mdash; the menu, opening hours and how to find us &mdash;
+          is on the main page.
+        </p>
+        <div class="nf-actions">
+          <a class="btn btn-primary" href="/">Back to the site</a>
+          <a class="btn btn-ghost" href="tel:+441948258170">Call 01948 258170</a>
+        </div>
+        <p class="nf-links">
+          <a href="/#menu">Menu</a>
+          <a href="/#visit">Find us</a>
+          <a href="/#contact">Get in touch</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Dan's Cafe, Whitchurch. All rights reserved.</span>
+        <span class="footer-legal"><a href="/privacy.html">Privacy &amp; Cookies</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

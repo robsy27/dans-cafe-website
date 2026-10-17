@@ -6,6 +6,32 @@
   <title>Dan's Cafe — Breakfast, Brunch &amp; Diner in Whitchurch</title>
   <meta name="description" content="Dan's Cafe, Whitchurch — breakfast, brunch and diner classics cooked fresh every day. View the menu, order for collection, or find us on Bridgewater Street." />
 
+  <!-- Canonical: www and the bare domain both serve this site, and so do
+       "/" and "/index.html". This tells search engines which one counts,
+       so the ranking isn't split across four addresses. -->
+  <link rel="canonical" href="https://danscafe.co.uk/" />
+
+  <!-- Share card: what Facebook, WhatsApp, iMessage and Slack show when
+       someone posts the link. Without these you get a bare blue URL. -->
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:site_name" content="Dan's Cafe" />
+  <meta property="og:title" content="Dan's Cafe — Breakfast, Brunch &amp; Diner in Whitchurch" />
+  <meta property="og:description" content="Breakfast served all day, burgers off the grill, Sunday roasts and proper milkshakes. On Bridgewater Street, Whitchurch." />
+  <meta property="og:image" content="https://danscafe.co.uk/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="A full English breakfast at Dan's Cafe, Whitchurch" />
+  <meta property="og:url" content="https://danscafe.co.uk/" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dan's Cafe — Breakfast, Brunch &amp; Diner in Whitchurch" />
+  <meta name="twitter:description" content="Breakfast served all day, burgers off the grill, Sunday roasts and proper milkshakes. On Bridgewater Street, Whitchurch." />
+  <meta name="twitter:image" content="https://danscafe.co.uk/og-image.jpg" />
+
+  <!-- Colours the browser chrome on Android/Chrome mobile. -->
+  <meta name="theme-color" content="#7c8a73" />
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -15,7 +41,7 @@
        for up to a week after an update. index.html itself is not
        cached, so changing this number here invalidates them instantly.
        BUMP THE VERSION whenever styles.css or main.js changes. -->
-  <link rel="stylesheet" href="css/styles.css?v=20261010-1" />
+  <link rel="stylesheet" href="css/styles.css?v=20261017-1" />
 
   <!-- Enables the scroll-reveal animations only when JS is running, so the
        page still renders fully visible for screenshots, previews and crawlers. -->
@@ -109,7 +135,87 @@
     })();
   </script>
 
+  <!-- The inline SVG below is what the browser tab uses. It is a data URI,
+       which Google's favicon crawler cannot fetch, so the .ico and PNG
+       files are here for search results and phone home screens. -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237C8A73'/%3E%3Cellipse cx='32' cy='47' rx='15' ry='3' fill='%23F6F1E7'/%3E%3Cpath d='M17 22h28v11a14 14 0 0 1-14 14 14 14 0 0 1-14-14V22Z' fill='%23F6F1E7'/%3E%3Cpath d='M45 25h4a7 7 0 0 1 0 14h-4' fill='none' stroke='%23F6F1E7' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+  <!-- Structured data: the cafe's details in the format search engines read.
+       This is what lets Google show opening hours, phone and address
+       directly in results and feeds the local map listing.
+
+       Deliberately NOT included: the Tripadvisor star rating. Google's
+       guidelines treat a business marking up its own review score as
+       self-serving, and it can trigger a manual penalty. Ratings belong
+       on Tripadvisor and the Google Business Profile, where Google
+       collects them itself.
+
+       KEEP IN SYNC: if the opening hours or phone number change on the
+       page, change them here too. Mismatched details hurt local ranking. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "@id": "https://danscafe.co.uk/#cafe",
+  "name": "Dan's Cafe",
+  "url": "https://danscafe.co.uk/",
+  "image": [
+    "https://danscafe.co.uk/og-image.jpg"
+  ],
+  "logo": "https://danscafe.co.uk/icon-512.png",
+  "description": "A modern, welcoming cafe on Bridgewater Street, Whitchurch. Breakfast served all day, burgers, toasties, Sunday roasts and milkshakes, with meat from a local butcher.",
+  "telephone": "+44 1948 258170",
+  "email": "danscafeinwhitchurch@gmail.com",
+  "priceRange": "££",
+  "currenciesAccepted": "GBP",
+  "paymentAccepted": "Cash, Credit Card, Debit Card",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bridgewater Buildings, Bridgewater Street",
+    "addressLocality": "Whitchurch",
+    "addressRegion": "Shropshire",
+    "postalCode": "SY13 1QJ",
+    "addressCountry": "GB"
+  },
+  "servesCuisine": [
+    "British",
+    "Breakfast",
+    "Brunch",
+    "Diner"
+  ],
+  "hasMap": "https://www.google.com/maps/dir/?api=1&destination=Dan%27s+Cafe,+Bridgewater+St,+Whitchurch+SY13+1QJ",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "07:00",
+      "closes": "16:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "08:00",
+      "closes": "14:30"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/danscafewhitchurch",
+    "https://www.facebook.com/danscafewhitchurch",
+    "https://www.tripadvisor.co.uk/Restaurant_Review-g662358-d25131257-Reviews-Dan_s_Cafe-Whitchurch_Shropshire_England.html"
+  ]
+}
+  </script>
+
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -726,7 +832,7 @@
     <section class="section section-sage" id="order">
       <div class="container">
         <div class="section-head center" data-reveal>
-          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-bag"/></svg></span>Click &amp; Collect</p>
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg><use href="#icon-bag"/></svg></span>Call for Collection</p>
           <h2>Order ahead for collection</h2>
           <p>Give us a call, let us know what you'd like, and we'll have it ready fresh for your chosen pickup time.</p>
         </div>
@@ -908,7 +1014,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Explore</h4>
+          <h3>Explore</h3>
           <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -919,7 +1025,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Visit</h4>
+          <h3>Visit</h3>
           <ul>
             <li><a href="#visit">Opening hours</a></li>
             <li><a href="#visit">Directions</a></li>
@@ -928,7 +1034,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h3>Contact</h3>
           <p>Unit 2, Dan's Cafe, Bridgewater Buildings, Bridgewater St, Whitchurch, SY13 1QJ</p>
           <p class="footer-contact-line"><a href="tel:+441948258170">01948 258170</a></p>
           <p><a href="mailto:danscafeinwhitchurch@gmail.com">danscafeinwhitchurch@gmail.com</a></p>
@@ -985,7 +1091,7 @@
       </div>
 
       <div class="menu-lightbox-stage" id="menuLightboxStage">
-        <img id="menuLightboxImg" src="" alt="" />
+        <img id="menuLightboxImg" alt="" />
       </div>
 
       <div class="menu-lightbox-foot">
@@ -1027,6 +1133,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=20261010-1"></script>
+  <script src="js/main.js?v=20261017-1"></script>
 </body>
 </html>
